@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Backend REST API service for MoneyMate Personal Finance Application",
   "main": "dist/server.js",
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc && prisma generate && prisma db push && tsx prisma/seed.ts",
-    "start": "node dist/server.js",
+    "build": "tsc && prisma generate && tsx prisma/seed.ts",
+    "start": "prisma db push && node dist/server.js",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "tsx prisma/seed.ts"
