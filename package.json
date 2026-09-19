@@ -2,13 +2,13 @@
   "name": "moneymate-backend",
   "version": "1.0.0",
   "description": "Backend REST API service for MoneyMate Personal Finance Application",
-  "main": "dist/server.js",
+  "main": "dist/start.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch src/start.ts",
     "build": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate && tsc",
     "postinstall": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate",
-    "start": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma db push --accept-data-loss && node dist/server.js",
+    "start": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma db push --accept-data-loss && node dist/start.js",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "tsx prisma/seed.ts"
