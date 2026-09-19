@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/start.ts",
-    "build": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate && tsc",
+    "build": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate && tsc && prisma db push --accept-data-loss && tsx prisma/seed.ts && cp -f prisma/dev.db ./dev.db 2>/dev/null || true",
     "postinstall": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate",
     "start": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma db push --accept-data-loss && node dist/start.js",
     "prisma:generate": "prisma generate",
