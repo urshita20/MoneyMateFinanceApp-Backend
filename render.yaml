@@ -1,18 +1,13 @@
 services:
   - type: web
-    name: moneymate-backend
+    name: moneymatefinanceapp-backend
     env: node
-    plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    buildCommand: npm run build
+    startCommand: npm start
     envVars:
-      - key: NODE_ENV
-        value: production
-      - key: NPM_CONFIG_PRODUCTION
-        value: "false"
       - key: DATABASE_URL
         value: "file:./dev.db"
       - key: JWT_SECRET
-        generateValue: true
-      - key: CORS_ORIGIN
-        value: "*"
+        value: "moneymate_super_secret_jwt_key_2026"
+      - key: NODE_ENV
+        value: "production"
