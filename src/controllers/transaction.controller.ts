@@ -37,10 +37,21 @@ export const getTransactions = async (req: AuthRequest, res: Response) => {
       ];
     }
 
-    const transactions = await prisma.transaction.findMany({
+    const rawTransactions = await prisma.transaction.findMany({
       where,
       orderBy: { createdAt: 'desc' },
     });
+
+    // Deduplicate backend transactions by merchant, amount, category, date, type
+    const seen = new Map<string, any>();
+    const transactions: any[] = [];
+    for (const tx of rawTransactions) {
+      const sig = `${tx.merchant.toLowerCase().trim()}_${tx.amount}_${tx.category.toLowerCase().trim()}_${tx.type}_${tx.date}`;
+      if (!seen.has(sig)) {
+        seen.set(sig, tx);
+        transactions.push(tx);
+      }
+    }
 
     return res.json({ success: true, count: transactions.length, transactions });
   } catch (error: any) {
@@ -67,7 +78,9 @@ export const createTransaction = async (req: AuthRequest, res: Response) => {
       },
     });
 
-    const isDuplicate = Boolean(existing);
+    if (existing) {
+      return res.status(200).json({ success: true, transaction: existing, isPossibleDuplicate: true });
+    }
 
     const transaction = await prisma.transaction.create({
       data: {
@@ -89,7 +102,7 @@ export const createTransaction = async (req: AuthRequest, res: Response) => {
       }
     }
 
-    return res.status(201).json({ success: true, transaction, isPossibleDuplicate: isDuplicate });
+    return res.status(201).json({ success: true, transaction, isPossibleDuplicate: false });
   } catch (error: any) {
     return res.status(400).json({ success: false, message: error.message });
   }
