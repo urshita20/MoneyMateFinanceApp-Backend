@@ -9,30 +9,30 @@ generator client {
 }
 
 model User {
-  id           String        @id @default(uuid())
-  email        String        @unique
-  password     String
-  name         String
-  role         String        @default("user")
-  profileMode  String        @default("adult") // adult | junior
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  id          String   @id @default(uuid())
+  email       String   @unique
+  password    String
+  name        String
+  role        String   @default("user")
+  profileMode String   @default("adult") // adult | junior
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  accounts     Account[]
-  transactions Transaction[]
-  budgets      Budget[]
-  goals        Goal[]
-  bills        Bill[]
-  loans        Loan[]
-  investments  Investment[]
-  quests       JuniorQuest[]
+  accounts      Account[]
+  transactions  Transaction[]
+  budgets       Budget[]
+  goals         Goal[]
+  bills         Bill[]
+  loans         Loan[]
+  investments   Investment[]
+  quests        JuniorQuest[]
   chatHistories AIChatHistory[]
 }
 
 model Account {
   id        String   @id @default(uuid())
   name      String
-  type      String   // bank, credit, cash, investment, savings
+  type      String // bank, credit, cash, investment, savings
   balance   Float
   currency  String   @default("INR")
   userId    String
@@ -42,12 +42,12 @@ model Account {
 }
 
 model Category {
-  id        String   @id @default(uuid())
+  id        String  @id @default(uuid())
   name      String
-  emoji     String   @default("🏷️")
-  color     String   @default("#64748B")
-  type      String   @default("expense") // income | expense
-  isDefault Boolean  @default(true)
+  emoji     String  @default("🏷️")
+  color     String  @default("#64748B")
+  type      String  @default("expense") // income | expense
+  isDefault Boolean @default(true)
 }
 
 model Transaction {
@@ -55,7 +55,7 @@ model Transaction {
   merchant  String
   amount    Float
   category  String
-  date      String   // e.g. "Jul 18" or "2026-07-18"
+  date      String // e.g. "Jul 18" or "2026-07-18"
   emoji     String   @default("💸")
   type      String   @default("expense") // income | expense | transfer
   note      String?
@@ -73,7 +73,7 @@ model Budget {
   spentAmount  Float    @default(0)
   emoji        String   @default("📊")
   color        String   @default("#6366F1")
-  month        String   // e.g. "Jul 2026"
+  month        String // e.g. "Jul 2026"
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
@@ -87,8 +87,8 @@ model Goal {
   savedAmount  Float    @default(0)
   emoji        String   @default("🎯")
   color        String   @default("emerald")
-  deadline     String   // e.g. "Dec 2025"
-  aiDate       String?  // e.g. "Nov 2025"
+  deadline     String // e.g. "Dec 2025"
+  aiDate       String? // e.g. "Nov 2025"
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
@@ -99,7 +99,7 @@ model Bill {
   id        String   @id @default(uuid())
   name      String
   amount    Float
-  dueDate   String   // e.g. "Jul 25"
+  dueDate   String // e.g. "Jul 25"
   status    String   @default("upcoming") // upcoming | due-soon | due-today | paid
   emoji     String   @default("📄")
   recurring Boolean  @default(true)
@@ -127,7 +127,7 @@ model Loan {
 model Investment {
   id             String   @id @default(uuid())
   assetName      String
-  type           String   // SIP, Stock, Crypto, FD
+  type           String // SIP, Stock, Crypto, FD
   investedAmount Float
   currentValue   Float
   returnsPercent Float
@@ -161,7 +161,7 @@ model JuniorQuest {
 
 model AIChatHistory {
   id        String   @id @default(uuid())
-  role      String   // user | assistant
+  role      String // user | assistant
   content   String
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
