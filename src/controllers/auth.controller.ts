@@ -64,6 +64,10 @@ export const register = async (req: AuthRequest, res: Response) => {
       },
     });
   } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      const msg = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join('. ');
+      return res.status(400).json({ success: false, message: msg || 'Validation failed' });
+    }
     return res.status(400).json({ success: false, message: error.message || 'Registration failed' });
   }
 };
@@ -99,6 +103,10 @@ export const login = async (req: AuthRequest, res: Response) => {
       },
     });
   } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      const msg = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join('. ');
+      return res.status(400).json({ success: false, message: msg || 'Validation failed' });
+    }
     return res.status(400).json({ success: false, message: error.message || 'Login failed' });
   }
 };
