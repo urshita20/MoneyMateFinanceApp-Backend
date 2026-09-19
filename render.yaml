@@ -3,7 +3,7 @@ services:
     name: moneymatefinanceapp-backend
     env: node
     buildCommand: npm run build
-    startCommand: npm start
+    startCommand: export DATABASE_URL="file:./dev.db" && node dist/start.js
     envVars:
       - key: DATABASE_URL
         value: "file:./dev.db"
