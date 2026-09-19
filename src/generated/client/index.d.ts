@@ -5075,6 +5075,9 @@ export namespace Prisma {
     description: string | null
     paymentMethod: string | null
     receiptImage: string | null
+    source: string | null
+    receiptUrl: string | null
+    externalTransactionId: string | null
     note: string | null
     accountId: string | null
     userId: string | null
@@ -5093,6 +5096,9 @@ export namespace Prisma {
     description: string | null
     paymentMethod: string | null
     receiptImage: string | null
+    source: string | null
+    receiptUrl: string | null
+    externalTransactionId: string | null
     note: string | null
     accountId: string | null
     userId: string | null
@@ -5111,6 +5117,9 @@ export namespace Prisma {
     description: number
     paymentMethod: number
     receiptImage: number
+    source: number
+    receiptUrl: number
+    externalTransactionId: number
     note: number
     accountId: number
     userId: number
@@ -5139,6 +5148,9 @@ export namespace Prisma {
     description?: true
     paymentMethod?: true
     receiptImage?: true
+    source?: true
+    receiptUrl?: true
+    externalTransactionId?: true
     note?: true
     accountId?: true
     userId?: true
@@ -5157,6 +5169,9 @@ export namespace Prisma {
     description?: true
     paymentMethod?: true
     receiptImage?: true
+    source?: true
+    receiptUrl?: true
+    externalTransactionId?: true
     note?: true
     accountId?: true
     userId?: true
@@ -5175,6 +5190,9 @@ export namespace Prisma {
     description?: true
     paymentMethod?: true
     receiptImage?: true
+    source?: true
+    receiptUrl?: true
+    externalTransactionId?: true
     note?: true
     accountId?: true
     userId?: true
@@ -5280,6 +5298,9 @@ export namespace Prisma {
     description: string | null
     paymentMethod: string | null
     receiptImage: string | null
+    source: string | null
+    receiptUrl: string | null
+    externalTransactionId: string | null
     note: string | null
     accountId: string | null
     userId: string
@@ -5317,6 +5338,9 @@ export namespace Prisma {
     description?: boolean
     paymentMethod?: boolean
     receiptImage?: boolean
+    source?: boolean
+    receiptUrl?: boolean
+    externalTransactionId?: boolean
     note?: boolean
     accountId?: boolean
     userId?: boolean
@@ -5336,6 +5360,9 @@ export namespace Prisma {
     description?: boolean
     paymentMethod?: boolean
     receiptImage?: boolean
+    source?: boolean
+    receiptUrl?: boolean
+    externalTransactionId?: boolean
     note?: boolean
     accountId?: boolean
     userId?: boolean
@@ -5355,6 +5382,9 @@ export namespace Prisma {
     description?: boolean
     paymentMethod?: boolean
     receiptImage?: boolean
+    source?: boolean
+    receiptUrl?: boolean
+    externalTransactionId?: boolean
     note?: boolean
     accountId?: boolean
     userId?: boolean
@@ -5385,6 +5415,9 @@ export namespace Prisma {
       description: string | null
       paymentMethod: string | null
       receiptImage: string | null
+      source: string | null
+      receiptUrl: string | null
+      externalTransactionId: string | null
       note: string | null
       accountId: string | null
       userId: string
@@ -5794,6 +5827,9 @@ export namespace Prisma {
     readonly description: FieldRef<"Transaction", 'String'>
     readonly paymentMethod: FieldRef<"Transaction", 'String'>
     readonly receiptImage: FieldRef<"Transaction", 'String'>
+    readonly source: FieldRef<"Transaction", 'String'>
+    readonly receiptUrl: FieldRef<"Transaction", 'String'>
+    readonly externalTransactionId: FieldRef<"Transaction", 'String'>
     readonly note: FieldRef<"Transaction", 'String'>
     readonly accountId: FieldRef<"Transaction", 'String'>
     readonly userId: FieldRef<"Transaction", 'String'>
@@ -14196,6 +14232,9 @@ export namespace Prisma {
     description: 'description',
     paymentMethod: 'paymentMethod',
     receiptImage: 'receiptImage',
+    source: 'source',
+    receiptUrl: 'receiptUrl',
+    externalTransactionId: 'externalTransactionId',
     note: 'note',
     accountId: 'accountId',
     userId: 'userId',
@@ -14643,6 +14682,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Transaction"> | string | null
     paymentMethod?: StringNullableFilter<"Transaction"> | string | null
     receiptImage?: StringNullableFilter<"Transaction"> | string | null
+    source?: StringNullableFilter<"Transaction"> | string | null
+    receiptUrl?: StringNullableFilter<"Transaction"> | string | null
+    externalTransactionId?: StringNullableFilter<"Transaction"> | string | null
     note?: StringNullableFilter<"Transaction"> | string | null
     accountId?: StringNullableFilter<"Transaction"> | string | null
     userId?: StringFilter<"Transaction"> | string
@@ -14662,6 +14704,9 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     paymentMethod?: SortOrderInput | SortOrder
     receiptImage?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    receiptUrl?: SortOrderInput | SortOrder
+    externalTransactionId?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     accountId?: SortOrderInput | SortOrder
     userId?: SortOrder
@@ -14684,6 +14729,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Transaction"> | string | null
     paymentMethod?: StringNullableFilter<"Transaction"> | string | null
     receiptImage?: StringNullableFilter<"Transaction"> | string | null
+    source?: StringNullableFilter<"Transaction"> | string | null
+    receiptUrl?: StringNullableFilter<"Transaction"> | string | null
+    externalTransactionId?: StringNullableFilter<"Transaction"> | string | null
     note?: StringNullableFilter<"Transaction"> | string | null
     accountId?: StringNullableFilter<"Transaction"> | string | null
     userId?: StringFilter<"Transaction"> | string
@@ -14703,6 +14751,9 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     paymentMethod?: SortOrderInput | SortOrder
     receiptImage?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    receiptUrl?: SortOrderInput | SortOrder
+    externalTransactionId?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     accountId?: SortOrderInput | SortOrder
     userId?: SortOrder
@@ -14729,6 +14780,9 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     paymentMethod?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     receiptImage?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    source?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    receiptUrl?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    externalTransactionId?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     note?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     accountId?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     userId?: StringWithAggregatesFilter<"Transaction"> | string
@@ -15631,6 +15685,9 @@ export namespace Prisma {
     description?: string | null
     paymentMethod?: string | null
     receiptImage?: string | null
+    source?: string | null
+    receiptUrl?: string | null
+    externalTransactionId?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -15649,6 +15706,9 @@ export namespace Prisma {
     description?: string | null
     paymentMethod?: string | null
     receiptImage?: string | null
+    source?: string | null
+    receiptUrl?: string | null
+    externalTransactionId?: string | null
     note?: string | null
     accountId?: string | null
     userId: string
@@ -15667,6 +15727,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    externalTransactionId?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15685,6 +15748,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    externalTransactionId?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -15703,6 +15769,9 @@ export namespace Prisma {
     description?: string | null
     paymentMethod?: string | null
     receiptImage?: string | null
+    source?: string | null
+    receiptUrl?: string | null
+    externalTransactionId?: string | null
     note?: string | null
     accountId?: string | null
     userId: string
@@ -15721,6 +15790,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    externalTransactionId?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15738,6 +15810,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    externalTransactionId?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -16776,6 +16851,9 @@ export namespace Prisma {
     description?: SortOrder
     paymentMethod?: SortOrder
     receiptImage?: SortOrder
+    source?: SortOrder
+    receiptUrl?: SortOrder
+    externalTransactionId?: SortOrder
     note?: SortOrder
     accountId?: SortOrder
     userId?: SortOrder
@@ -16798,6 +16876,9 @@ export namespace Prisma {
     description?: SortOrder
     paymentMethod?: SortOrder
     receiptImage?: SortOrder
+    source?: SortOrder
+    receiptUrl?: SortOrder
+    externalTransactionId?: SortOrder
     note?: SortOrder
     accountId?: SortOrder
     userId?: SortOrder
@@ -16816,6 +16897,9 @@ export namespace Prisma {
     description?: SortOrder
     paymentMethod?: SortOrder
     receiptImage?: SortOrder
+    source?: SortOrder
+    receiptUrl?: SortOrder
+    externalTransactionId?: SortOrder
     note?: SortOrder
     accountId?: SortOrder
     userId?: SortOrder
@@ -17996,6 +18080,9 @@ export namespace Prisma {
     description?: string | null
     paymentMethod?: string | null
     receiptImage?: string | null
+    source?: string | null
+    receiptUrl?: string | null
+    externalTransactionId?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -18013,6 +18100,9 @@ export namespace Prisma {
     description?: string | null
     paymentMethod?: string | null
     receiptImage?: string | null
+    source?: string | null
+    receiptUrl?: string | null
+    externalTransactionId?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -18305,6 +18395,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Transaction"> | string | null
     paymentMethod?: StringNullableFilter<"Transaction"> | string | null
     receiptImage?: StringNullableFilter<"Transaction"> | string | null
+    source?: StringNullableFilter<"Transaction"> | string | null
+    receiptUrl?: StringNullableFilter<"Transaction"> | string | null
+    externalTransactionId?: StringNullableFilter<"Transaction"> | string | null
     note?: StringNullableFilter<"Transaction"> | string | null
     accountId?: StringNullableFilter<"Transaction"> | string | null
     userId?: StringFilter<"Transaction"> | string
@@ -19522,6 +19615,9 @@ export namespace Prisma {
     description?: string | null
     paymentMethod?: string | null
     receiptImage?: string | null
+    source?: string | null
+    receiptUrl?: string | null
+    externalTransactionId?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -19646,6 +19742,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    externalTransactionId?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19663,6 +19762,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    externalTransactionId?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19680,6 +19782,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
     receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    externalTransactionId?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

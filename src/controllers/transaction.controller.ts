@@ -14,6 +14,9 @@ const transactionSchema = z.object({
   description: z.string().optional(),
   paymentMethod: z.string().optional(),
   receiptImage: z.string().optional(),
+  source: z.string().optional().default('manual'),
+  receiptUrl: z.string().optional(),
+  externalTransactionId: z.string().optional(),
   note: z.string().optional(),
   accountId: z.string().optional(),
 });
@@ -105,6 +108,68 @@ export const createTransaction = async (req: AuthRequest, res: Response) => {
     return res.status(201).json({ success: true, transaction, isPossibleDuplicate: false });
   } catch (error: any) {
     return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const batchCreateTransactions = async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ success: false, message: 'User not authenticated' });
+    }
+
+    const { transactions: rawList } = req.body;
+    if (!Array.isArray(rawList)) {
+      return res.status(400).json({ success: false, message: 'transactions array is required' });
+    }
+
+    const created: any[] = [];
+    for (const item of rawList) {
+      try {
+        const parsed = transactionSchema.parse(item);
+
+        // Duplicate check
+        const existing = await prisma.transaction.findFirst({
+          where: {
+            userId,
+            merchant: parsed.merchant,
+            amount: parsed.amount,
+            date: parsed.date,
+          },
+        });
+
+        if (existing) {
+          created.push(existing);
+          continue;
+        }
+
+        const tx = await prisma.transaction.create({
+          data: {
+            ...parsed,
+            userId,
+          },
+        });
+        created.push(tx);
+
+        if (parsed.type === 'expense') {
+          const budget = await prisma.budget.findFirst({
+            where: { userId, category: parsed.category },
+          });
+          if (budget) {
+            await prisma.budget.update({
+              where: { id: budget.id },
+              data: { spentAmount: budget.spentAmount + parsed.amount },
+            });
+          }
+        }
+      } catch (e) {
+        // Continue parsing next items
+      }
+    }
+
+    return res.status(201).json({ success: true, count: created.length, transactions: created });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
 
