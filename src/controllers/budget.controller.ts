@@ -8,21 +8,18 @@ const budgetSchema = z.object({
   budgetAmount: z.number().positive(),
   emoji: z.string().optional().default('📊'),
   color: z.string().optional().default('#6366F1'),
-  month: z.string().optional().default('Jul 2026'),
+  month: z.string().optional().default(new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })),
 });
 
 export const getBudgets = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    const demoUser = userId ? null : await prisma.user.findFirst();
-    const targetUserId = userId || demoUser?.id;
-
-    if (!targetUserId) {
+    if (!userId) {
       return res.json({ success: true, budgets: [] });
     }
 
     const budgets = await prisma.budget.findMany({
-      where: { userId: targetUserId },
+      where: { userId },
     });
 
     const formattedBudgets = budgets.map((b) => ({
@@ -40,19 +37,23 @@ export const getBudgets = async (req: AuthRequest, res: Response) => {
 export const createBudget = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    const demoUser = userId ? null : await prisma.user.findFirst();
-    const targetUserId = userId || demoUser?.id;
-
-    if (!targetUserId) {
+    if (!userId) {
       return res.status(401).json({ success: false, message: 'User not authenticated' });
     }
 
     const data = budgetSchema.parse(req.body);
 
+    // Calculate actual spent amount for this category from transactions
+    const transactions = await prisma.transaction.findMany({
+      where: { userId, category: data.category, type: 'expense' },
+    });
+    const spentAmount = transactions.reduce((acc, t) => acc + t.amount, 0);
+
     const budget = await prisma.budget.create({
       data: {
         ...data,
-        userId: targetUserId,
+        spentAmount,
+        userId,
       },
     });
 
@@ -64,8 +65,14 @@ export const createBudget = async (req: AuthRequest, res: Response) => {
 
 export const updateBudget = async (req: AuthRequest, res: Response) => {
   try {
+    const userId = req.user?.id;
     const id = String(req.params.id);
     const { budgetAmount, spentAmount } = req.body;
+
+    const existing = await prisma.budget.findUnique({ where: { id } });
+    if (!existing || existing.userId !== userId) {
+      return res.status(404).json({ success: false, message: 'Budget not found' });
+    }
 
     const budget = await prisma.budget.update({
       where: { id },
@@ -83,7 +90,14 @@ export const updateBudget = async (req: AuthRequest, res: Response) => {
 
 export const deleteBudget = async (req: AuthRequest, res: Response) => {
   try {
+    const userId = req.user?.id;
     const id = String(req.params.id);
+
+    const existing = await prisma.budget.findUnique({ where: { id } });
+    if (!existing || existing.userId !== userId) {
+      return res.status(404).json({ success: false, message: 'Budget not found' });
+    }
+
     await prisma.budget.delete({ where: { id } });
     return res.json({ success: true, message: 'Budget deleted' });
   } catch (error: any) {

@@ -1897,8 +1897,22 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    monthlyIncome: number | null
+    monthlyBudget: number | null
+    savingsTarget: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    monthlyIncome: number | null
+    monthlyBudget: number | null
+    savingsTarget: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -1908,6 +1922,10 @@ export namespace Prisma {
     name: string | null
     role: string | null
     profileMode: string | null
+    monthlyIncome: number | null
+    monthlyBudget: number | null
+    savingsTarget: number | null
+    hasCompletedSetup: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1919,6 +1937,10 @@ export namespace Prisma {
     name: string | null
     role: string | null
     profileMode: string | null
+    monthlyIncome: number | null
+    monthlyBudget: number | null
+    savingsTarget: number | null
+    hasCompletedSetup: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1930,11 +1952,27 @@ export namespace Prisma {
     name: number
     role: number
     profileMode: number
+    monthlyIncome: number
+    monthlyBudget: number
+    savingsTarget: number
+    hasCompletedSetup: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
+
+  export type UserAvgAggregateInputType = {
+    monthlyIncome?: true
+    monthlyBudget?: true
+    savingsTarget?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    monthlyIncome?: true
+    monthlyBudget?: true
+    savingsTarget?: true
+  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -1943,6 +1981,10 @@ export namespace Prisma {
     name?: true
     role?: true
     profileMode?: true
+    monthlyIncome?: true
+    monthlyBudget?: true
+    savingsTarget?: true
+    hasCompletedSetup?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1954,6 +1996,10 @@ export namespace Prisma {
     name?: true
     role?: true
     profileMode?: true
+    monthlyIncome?: true
+    monthlyBudget?: true
+    savingsTarget?: true
+    hasCompletedSetup?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1965,6 +2011,10 @@ export namespace Prisma {
     name?: true
     role?: true
     profileMode?: true
+    monthlyIncome?: true
+    monthlyBudget?: true
+    savingsTarget?: true
+    hasCompletedSetup?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2008,6 +2058,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -2038,6 +2100,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
@@ -2049,9 +2113,15 @@ export namespace Prisma {
     name: string
     role: string
     profileMode: string
+    monthlyIncome: number | null
+    monthlyBudget: number | null
+    savingsTarget: number | null
+    hasCompletedSetup: boolean
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -2077,6 +2147,10 @@ export namespace Prisma {
     name?: boolean
     role?: boolean
     profileMode?: boolean
+    monthlyIncome?: boolean
+    monthlyBudget?: boolean
+    savingsTarget?: boolean
+    hasCompletedSetup?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
@@ -2098,6 +2172,10 @@ export namespace Prisma {
     name?: boolean
     role?: boolean
     profileMode?: boolean
+    monthlyIncome?: boolean
+    monthlyBudget?: boolean
+    savingsTarget?: boolean
+    hasCompletedSetup?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2109,6 +2187,10 @@ export namespace Prisma {
     name?: boolean
     role?: boolean
     profileMode?: boolean
+    monthlyIncome?: boolean
+    monthlyBudget?: boolean
+    savingsTarget?: boolean
+    hasCompletedSetup?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -2147,6 +2229,10 @@ export namespace Prisma {
       name: string
       role: string
       profileMode: string
+      monthlyIncome: number | null
+      monthlyBudget: number | null
+      savingsTarget: number | null
+      hasCompletedSetup: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -2557,6 +2643,10 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'String'>
     readonly profileMode: FieldRef<"User", 'String'>
+    readonly monthlyIncome: FieldRef<"User", 'Float'>
+    readonly monthlyBudget: FieldRef<"User", 'Float'>
+    readonly savingsTarget: FieldRef<"User", 'Float'>
+    readonly hasCompletedSetup: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -4982,6 +5072,9 @@ export namespace Prisma {
     date: string | null
     emoji: string | null
     type: string | null
+    description: string | null
+    paymentMethod: string | null
+    receiptImage: string | null
     note: string | null
     accountId: string | null
     userId: string | null
@@ -4997,6 +5090,9 @@ export namespace Prisma {
     date: string | null
     emoji: string | null
     type: string | null
+    description: string | null
+    paymentMethod: string | null
+    receiptImage: string | null
     note: string | null
     accountId: string | null
     userId: string | null
@@ -5012,6 +5108,9 @@ export namespace Prisma {
     date: number
     emoji: number
     type: number
+    description: number
+    paymentMethod: number
+    receiptImage: number
     note: number
     accountId: number
     userId: number
@@ -5037,6 +5136,9 @@ export namespace Prisma {
     date?: true
     emoji?: true
     type?: true
+    description?: true
+    paymentMethod?: true
+    receiptImage?: true
     note?: true
     accountId?: true
     userId?: true
@@ -5052,6 +5154,9 @@ export namespace Prisma {
     date?: true
     emoji?: true
     type?: true
+    description?: true
+    paymentMethod?: true
+    receiptImage?: true
     note?: true
     accountId?: true
     userId?: true
@@ -5067,6 +5172,9 @@ export namespace Prisma {
     date?: true
     emoji?: true
     type?: true
+    description?: true
+    paymentMethod?: true
+    receiptImage?: true
     note?: true
     accountId?: true
     userId?: true
@@ -5169,6 +5277,9 @@ export namespace Prisma {
     date: string
     emoji: string
     type: string
+    description: string | null
+    paymentMethod: string | null
+    receiptImage: string | null
     note: string | null
     accountId: string | null
     userId: string
@@ -5203,6 +5314,9 @@ export namespace Prisma {
     date?: boolean
     emoji?: boolean
     type?: boolean
+    description?: boolean
+    paymentMethod?: boolean
+    receiptImage?: boolean
     note?: boolean
     accountId?: boolean
     userId?: boolean
@@ -5219,6 +5333,9 @@ export namespace Prisma {
     date?: boolean
     emoji?: boolean
     type?: boolean
+    description?: boolean
+    paymentMethod?: boolean
+    receiptImage?: boolean
     note?: boolean
     accountId?: boolean
     userId?: boolean
@@ -5235,6 +5352,9 @@ export namespace Prisma {
     date?: boolean
     emoji?: boolean
     type?: boolean
+    description?: boolean
+    paymentMethod?: boolean
+    receiptImage?: boolean
     note?: boolean
     accountId?: boolean
     userId?: boolean
@@ -5262,6 +5382,9 @@ export namespace Prisma {
       date: string
       emoji: string
       type: string
+      description: string | null
+      paymentMethod: string | null
+      receiptImage: string | null
       note: string | null
       accountId: string | null
       userId: string
@@ -5668,6 +5791,9 @@ export namespace Prisma {
     readonly date: FieldRef<"Transaction", 'String'>
     readonly emoji: FieldRef<"Transaction", 'String'>
     readonly type: FieldRef<"Transaction", 'String'>
+    readonly description: FieldRef<"Transaction", 'String'>
+    readonly paymentMethod: FieldRef<"Transaction", 'String'>
+    readonly receiptImage: FieldRef<"Transaction", 'String'>
     readonly note: FieldRef<"Transaction", 'String'>
     readonly accountId: FieldRef<"Transaction", 'String'>
     readonly userId: FieldRef<"Transaction", 'String'>
@@ -14022,6 +14148,10 @@ export namespace Prisma {
     name: 'name',
     role: 'role',
     profileMode: 'profileMode',
+    monthlyIncome: 'monthlyIncome',
+    monthlyBudget: 'monthlyBudget',
+    savingsTarget: 'savingsTarget',
+    hasCompletedSetup: 'hasCompletedSetup',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14063,6 +14193,9 @@ export namespace Prisma {
     date: 'date',
     emoji: 'emoji',
     type: 'type',
+    description: 'description',
+    paymentMethod: 'paymentMethod',
+    receiptImage: 'receiptImage',
     note: 'note',
     accountId: 'accountId',
     userId: 'userId',
@@ -14221,13 +14354,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -14238,6 +14364,13 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
@@ -14261,6 +14394,10 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     role?: StringFilter<"User"> | string
     profileMode?: StringFilter<"User"> | string
+    monthlyIncome?: FloatNullableFilter<"User"> | number | null
+    monthlyBudget?: FloatNullableFilter<"User"> | number | null
+    savingsTarget?: FloatNullableFilter<"User"> | number | null
+    hasCompletedSetup?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
@@ -14281,6 +14418,10 @@ export namespace Prisma {
     name?: SortOrder
     role?: SortOrder
     profileMode?: SortOrder
+    monthlyIncome?: SortOrderInput | SortOrder
+    monthlyBudget?: SortOrderInput | SortOrder
+    savingsTarget?: SortOrderInput | SortOrder
+    hasCompletedSetup?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
@@ -14304,6 +14445,10 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     role?: StringFilter<"User"> | string
     profileMode?: StringFilter<"User"> | string
+    monthlyIncome?: FloatNullableFilter<"User"> | number | null
+    monthlyBudget?: FloatNullableFilter<"User"> | number | null
+    savingsTarget?: FloatNullableFilter<"User"> | number | null
+    hasCompletedSetup?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
@@ -14324,11 +14469,17 @@ export namespace Prisma {
     name?: SortOrder
     role?: SortOrder
     profileMode?: SortOrder
+    monthlyIncome?: SortOrderInput | SortOrder
+    monthlyBudget?: SortOrderInput | SortOrder
+    savingsTarget?: SortOrderInput | SortOrder
+    hasCompletedSetup?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
@@ -14341,6 +14492,10 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     role?: StringWithAggregatesFilter<"User"> | string
     profileMode?: StringWithAggregatesFilter<"User"> | string
+    monthlyIncome?: FloatNullableWithAggregatesFilter<"User"> | number | null
+    monthlyBudget?: FloatNullableWithAggregatesFilter<"User"> | number | null
+    savingsTarget?: FloatNullableWithAggregatesFilter<"User"> | number | null
+    hasCompletedSetup?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -14485,6 +14640,9 @@ export namespace Prisma {
     date?: StringFilter<"Transaction"> | string
     emoji?: StringFilter<"Transaction"> | string
     type?: StringFilter<"Transaction"> | string
+    description?: StringNullableFilter<"Transaction"> | string | null
+    paymentMethod?: StringNullableFilter<"Transaction"> | string | null
+    receiptImage?: StringNullableFilter<"Transaction"> | string | null
     note?: StringNullableFilter<"Transaction"> | string | null
     accountId?: StringNullableFilter<"Transaction"> | string | null
     userId?: StringFilter<"Transaction"> | string
@@ -14501,6 +14659,9 @@ export namespace Prisma {
     date?: SortOrder
     emoji?: SortOrder
     type?: SortOrder
+    description?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    receiptImage?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     accountId?: SortOrderInput | SortOrder
     userId?: SortOrder
@@ -14520,6 +14681,9 @@ export namespace Prisma {
     date?: StringFilter<"Transaction"> | string
     emoji?: StringFilter<"Transaction"> | string
     type?: StringFilter<"Transaction"> | string
+    description?: StringNullableFilter<"Transaction"> | string | null
+    paymentMethod?: StringNullableFilter<"Transaction"> | string | null
+    receiptImage?: StringNullableFilter<"Transaction"> | string | null
     note?: StringNullableFilter<"Transaction"> | string | null
     accountId?: StringNullableFilter<"Transaction"> | string | null
     userId?: StringFilter<"Transaction"> | string
@@ -14536,6 +14700,9 @@ export namespace Prisma {
     date?: SortOrder
     emoji?: SortOrder
     type?: SortOrder
+    description?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    receiptImage?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     accountId?: SortOrderInput | SortOrder
     userId?: SortOrder
@@ -14559,6 +14726,9 @@ export namespace Prisma {
     date?: StringWithAggregatesFilter<"Transaction"> | string
     emoji?: StringWithAggregatesFilter<"Transaction"> | string
     type?: StringWithAggregatesFilter<"Transaction"> | string
+    description?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    paymentMethod?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    receiptImage?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     note?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     accountId?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
     userId?: StringWithAggregatesFilter<"Transaction"> | string
@@ -15177,6 +15347,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -15197,6 +15371,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -15217,6 +15395,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -15237,6 +15419,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -15257,6 +15443,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15268,6 +15458,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15279,6 +15473,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15430,6 +15628,9 @@ export namespace Prisma {
     date: string
     emoji?: string
     type?: string
+    description?: string | null
+    paymentMethod?: string | null
+    receiptImage?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -15445,6 +15646,9 @@ export namespace Prisma {
     date: string
     emoji?: string
     type?: string
+    description?: string | null
+    paymentMethod?: string | null
+    receiptImage?: string | null
     note?: string | null
     accountId?: string | null
     userId: string
@@ -15460,6 +15664,9 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     emoji?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15475,6 +15682,9 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     emoji?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -15490,6 +15700,9 @@ export namespace Prisma {
     date: string
     emoji?: string
     type?: string
+    description?: string | null
+    paymentMethod?: string | null
+    receiptImage?: string | null
     note?: string | null
     accountId?: string | null
     userId: string
@@ -15505,6 +15718,9 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     emoji?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15519,6 +15735,9 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     emoji?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -16198,6 +16417,22 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -16263,6 +16498,11 @@ export namespace Prisma {
     none?: AIChatHistoryWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -16306,8 +16546,18 @@ export namespace Prisma {
     name?: SortOrder
     role?: SortOrder
     profileMode?: SortOrder
+    monthlyIncome?: SortOrder
+    monthlyBudget?: SortOrder
+    savingsTarget?: SortOrder
+    hasCompletedSetup?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    monthlyIncome?: SortOrder
+    monthlyBudget?: SortOrder
+    savingsTarget?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -16317,6 +16567,10 @@ export namespace Prisma {
     name?: SortOrder
     role?: SortOrder
     profileMode?: SortOrder
+    monthlyIncome?: SortOrder
+    monthlyBudget?: SortOrder
+    savingsTarget?: SortOrder
+    hasCompletedSetup?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16328,8 +16582,18 @@ export namespace Prisma {
     name?: SortOrder
     role?: SortOrder
     profileMode?: SortOrder
+    monthlyIncome?: SortOrder
+    monthlyBudget?: SortOrder
+    savingsTarget?: SortOrder
+    hasCompletedSetup?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    monthlyIncome?: SortOrder
+    monthlyBudget?: SortOrder
+    savingsTarget?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -16347,6 +16611,30 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -16436,11 +16724,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -16468,14 +16751,6 @@ export namespace Prisma {
     isDefault?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -16490,11 +16765,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type TransactionCountOrderByAggregateInput = {
     id?: SortOrder
     merchant?: SortOrder
@@ -16503,6 +16773,9 @@ export namespace Prisma {
     date?: SortOrder
     emoji?: SortOrder
     type?: SortOrder
+    description?: SortOrder
+    paymentMethod?: SortOrder
+    receiptImage?: SortOrder
     note?: SortOrder
     accountId?: SortOrder
     userId?: SortOrder
@@ -16522,6 +16795,9 @@ export namespace Prisma {
     date?: SortOrder
     emoji?: SortOrder
     type?: SortOrder
+    description?: SortOrder
+    paymentMethod?: SortOrder
+    receiptImage?: SortOrder
     note?: SortOrder
     accountId?: SortOrder
     userId?: SortOrder
@@ -16537,6 +16813,9 @@ export namespace Prisma {
     date?: SortOrder
     emoji?: SortOrder
     type?: SortOrder
+    description?: SortOrder
+    paymentMethod?: SortOrder
+    receiptImage?: SortOrder
     note?: SortOrder
     accountId?: SortOrder
     userId?: SortOrder
@@ -17071,6 +17350,18 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -17349,10 +17640,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type UserCreateNestedOneWithoutTransactionsInput = {
     create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
@@ -17491,6 +17778,22 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -17528,6 +17831,41 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -17571,19 +17909,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -17613,17 +17938,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -17679,6 +17993,9 @@ export namespace Prisma {
     date: string
     emoji?: string
     type?: string
+    description?: string | null
+    paymentMethod?: string | null
+    receiptImage?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -17693,6 +18010,9 @@ export namespace Prisma {
     date: string
     emoji?: string
     type?: string
+    description?: string | null
+    paymentMethod?: string | null
+    receiptImage?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -17982,6 +18302,9 @@ export namespace Prisma {
     date?: StringFilter<"Transaction"> | string
     emoji?: StringFilter<"Transaction"> | string
     type?: StringFilter<"Transaction"> | string
+    description?: StringNullableFilter<"Transaction"> | string | null
+    paymentMethod?: StringNullableFilter<"Transaction"> | string | null
+    receiptImage?: StringNullableFilter<"Transaction"> | string | null
     note?: StringNullableFilter<"Transaction"> | string | null
     accountId?: StringNullableFilter<"Transaction"> | string | null
     userId?: StringFilter<"Transaction"> | string
@@ -18213,6 +18536,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -18232,6 +18559,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -18267,6 +18598,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -18286,6 +18621,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -18305,6 +18644,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18324,6 +18667,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -18359,6 +18706,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -18378,6 +18729,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -18397,6 +18752,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18416,6 +18775,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -18451,6 +18814,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -18470,6 +18837,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -18489,6 +18860,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18508,6 +18883,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -18543,6 +18922,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -18562,6 +18945,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -18581,6 +18968,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18600,6 +18991,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -18635,6 +19030,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -18654,6 +19053,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -18673,6 +19076,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18692,6 +19099,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -18727,6 +19138,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -18746,6 +19161,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -18765,6 +19184,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18784,6 +19207,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -18819,6 +19246,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -18838,6 +19269,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -18857,6 +19292,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18876,6 +19315,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -18911,6 +19354,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -18930,6 +19377,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -18949,6 +19400,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -18968,6 +19423,10 @@ export namespace Prisma {
     name: string
     role?: string
     profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -19003,6 +19462,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -19022,6 +19485,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -19052,6 +19519,9 @@ export namespace Prisma {
     date: string
     emoji?: string
     type?: string
+    description?: string | null
+    paymentMethod?: string | null
+    receiptImage?: string | null
     note?: string | null
     accountId?: string | null
     createdAt?: Date | string
@@ -19173,6 +19643,9 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     emoji?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19187,6 +19660,9 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     emoji?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19201,6 +19677,9 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     emoji?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptImage?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     accountId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

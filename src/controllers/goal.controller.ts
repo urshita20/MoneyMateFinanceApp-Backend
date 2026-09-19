@@ -16,15 +16,13 @@ const goalSchema = z.object({
 export const getGoals = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    const demoUser = userId ? null : await prisma.user.findFirst();
-    const targetUserId = userId || demoUser?.id;
-
-    if (!targetUserId) {
+    if (!userId) {
       return res.json({ success: true, goals: [] });
     }
 
     const goals = await prisma.goal.findMany({
-      where: { userId: targetUserId },
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
     });
 
     const formattedGoals = goals.map((g) => ({
@@ -42,10 +40,7 @@ export const getGoals = async (req: AuthRequest, res: Response) => {
 export const createGoal = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    const demoUser = userId ? null : await prisma.user.findFirst();
-    const targetUserId = userId || demoUser?.id;
-
-    if (!targetUserId) {
+    if (!userId) {
       return res.status(401).json({ success: false, message: 'User not authenticated' });
     }
 
@@ -54,7 +49,7 @@ export const createGoal = async (req: AuthRequest, res: Response) => {
     const goal = await prisma.goal.create({
       data: {
         ...data,
-        userId: targetUserId,
+        userId,
       },
     });
 
@@ -66,11 +61,12 @@ export const createGoal = async (req: AuthRequest, res: Response) => {
 
 export const updateGoalProgress = async (req: AuthRequest, res: Response) => {
   try {
+    const userId = req.user?.id;
     const id = String(req.params.id);
     const { depositAmount } = req.body;
 
     const goal = await prisma.goal.findUnique({ where: { id } });
-    if (!goal) {
+    if (!goal || goal.userId !== userId) {
       return res.status(404).json({ success: false, message: 'Goal not found' });
     }
 
@@ -89,7 +85,14 @@ export const updateGoalProgress = async (req: AuthRequest, res: Response) => {
 
 export const deleteGoal = async (req: AuthRequest, res: Response) => {
   try {
+    const userId = req.user?.id;
     const id = String(req.params.id);
+
+    const goal = await prisma.goal.findUnique({ where: { id } });
+    if (!goal || goal.userId !== userId) {
+      return res.status(404).json({ success: false, message: 'Goal not found' });
+    }
+
     await prisma.goal.delete({ where: { id } });
     return res.json({ success: true, message: 'Goal deleted' });
   } catch (error: any) {

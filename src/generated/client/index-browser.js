@@ -126,6 +126,10 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   role: 'role',
   profileMode: 'profileMode',
+  monthlyIncome: 'monthlyIncome',
+  monthlyBudget: 'monthlyBudget',
+  savingsTarget: 'savingsTarget',
+  hasCompletedSetup: 'hasCompletedSetup',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -158,6 +162,9 @@ exports.Prisma.TransactionScalarFieldEnum = {
   date: 'date',
   emoji: 'emoji',
   type: 'type',
+  description: 'description',
+  paymentMethod: 'paymentMethod',
+  receiptImage: 'receiptImage',
   note: 'note',
   accountId: 'accountId',
   userId: 'userId',

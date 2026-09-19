@@ -17,6 +17,12 @@ const loginSchema = z.object({
   password: z.string(),
 });
 
+const setupSchema = z.object({
+  monthlyIncome: z.number().nonnegative(),
+  monthlyBudget: z.number().nonnegative(),
+  savingsTarget: z.number().optional().default(0),
+});
+
 export const register = async (req: AuthRequest, res: Response) => {
   try {
     const data = registerSchema.parse(req.body);
@@ -33,15 +39,19 @@ export const register = async (req: AuthRequest, res: Response) => {
         email: data.email,
         password: hashedPassword,
         profileMode: data.profileMode,
+        monthlyIncome: 0,
+        monthlyBudget: 0,
+        savingsTarget: 0,
+        hasCompletedSetup: false,
       },
     });
 
-    // Create default cash account for user
+    // Create main wallet account with 0 balance
     await prisma.account.create({
       data: {
         name: 'Main Wallet',
         type: 'cash',
-        balance: 1000,
+        balance: 0,
         currency: 'INR',
         userId: user.id,
       },
@@ -61,6 +71,10 @@ export const register = async (req: AuthRequest, res: Response) => {
         name: user.name,
         email: user.email,
         profileMode: user.profileMode,
+        monthlyIncome: user.monthlyIncome,
+        monthlyBudget: user.monthlyBudget,
+        savingsTarget: user.savingsTarget,
+        hasCompletedSetup: user.hasCompletedSetup,
       },
     });
   } catch (error: any) {
@@ -100,6 +114,10 @@ export const login = async (req: AuthRequest, res: Response) => {
         name: user.name,
         email: user.email,
         profileMode: user.profileMode,
+        monthlyIncome: user.monthlyIncome || 0,
+        monthlyBudget: user.monthlyBudget || 0,
+        savingsTarget: user.savingsTarget || 0,
+        hasCompletedSetup: user.hasCompletedSetup || false,
       },
     });
   } catch (error: any) {
@@ -115,9 +133,7 @@ export const getMe = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      // Fallback demo user
-      const demoUser = await prisma.user.findFirst();
-      return res.json({ success: true, user: demoUser });
+      return res.status(401).json({ success: false, message: 'Not authenticated' });
     }
 
     const user = await prisma.user.findUnique({
@@ -127,12 +143,57 @@ export const getMe = async (req: AuthRequest, res: Response) => {
         name: true,
         email: true,
         profileMode: true,
+        monthlyIncome: true,
+        monthlyBudget: true,
+        savingsTarget: true,
+        hasCompletedSetup: true,
         accounts: true,
       },
     });
 
     return res.json({ success: true, user });
   } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const setupFinancialProfile = async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ success: false, message: 'Not authenticated' });
+    }
+
+    const data = setupSchema.parse(req.body);
+
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        monthlyIncome: data.monthlyIncome,
+        monthlyBudget: data.monthlyBudget,
+        savingsTarget: data.savingsTarget,
+        hasCompletedSetup: true,
+      },
+    });
+
+    return res.json({
+      success: true,
+      message: 'Financial profile setup completed',
+      user: {
+        id: updatedUser.id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        monthlyIncome: updatedUser.monthlyIncome,
+        monthlyBudget: updatedUser.monthlyBudget,
+        savingsTarget: updatedUser.savingsTarget,
+        hasCompletedSetup: updatedUser.hasCompletedSetup,
+      },
+    });
+  } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      const msg = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join('. ');
+      return res.status(400).json({ success: false, message: msg });
+    }
     return res.status(500).json({ success: false, message: error.message });
   }
 };

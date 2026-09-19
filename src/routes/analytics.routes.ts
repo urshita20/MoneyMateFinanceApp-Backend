@@ -4,6 +4,7 @@ import {
   getSpendingByCategory,
   getMonthlyTrends,
   getWeeklyTrends,
+  getTimeMachineAnalysis,
 } from '../controllers/analytics.controller.js';
 import { chatWithAI, getAIInsights } from '../controllers/ai.controller.js';
 import { getInvestments, getLoans } from '../controllers/investment.controller.js';
@@ -15,6 +16,7 @@ analyticsRouter.get('/summary', authenticateToken, getDashboardSummary);
 analyticsRouter.get('/spending-by-category', authenticateToken, getSpendingByCategory);
 analyticsRouter.get('/monthly-trends', authenticateToken, getMonthlyTrends);
 analyticsRouter.get('/weekly-trends', authenticateToken, getWeeklyTrends);
+analyticsRouter.get('/time-machine', authenticateToken, getTimeMachineAnalysis);
 
 export const aiRouter = Router();
 aiRouter.post('/chat', authenticateToken, chatWithAI);
