@@ -28,6 +28,27 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
+// Welcome & Root Directory Endpoint
+app.get('/', (req, res) => {
+  res.json({
+    message: '🚀 MoneyMate Finance App Backend API is running successfully!',
+    status: 'online',
+    health: '/health',
+    endpoints: {
+      auth: '/api/auth',
+      transactions: '/api/transactions',
+      budgets: '/api/budgets',
+      goals: '/api/goals',
+      bills: '/api/bills',
+      analytics: '/api/analytics/summary',
+      ai: '/api/ai/insights',
+      investments: '/api/investments',
+      knowledge: '/api/knowledge/articles',
+      junior: '/api/junior/quests',
+    },
+  });
+});
+
 // Health Check Endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'MoneyMate Backend API', timestamp: new Date().toISOString() });
