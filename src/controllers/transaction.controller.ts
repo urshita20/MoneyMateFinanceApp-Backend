@@ -235,40 +235,98 @@ function inferCategory(text: string): { category: string; emoji: string } {
 // Helper for extracting total amount
 function extractAmount(lines: string[]): number | null {
   const fullText = lines.join('\n');
-  
-  // Search for lines containing Total / Amount / RS / INR / Net Amount
-  const totalRegexes = [
-    /(?:grand\s+total|total\s+amount|net\s+amount|total\s+due|amount\s+paid|total|bal|paid)\s*[:=₹Rs\.\s]*([0-9,]+(?:\.[0-9]{1,2})?)/i,
-    /(?:₹|Rs\.?|INR)\s*([0-9,]+(?:\.[0-9]{1,2})?)/i,
+
+  const highPriorityKeywords = [
+    /total\s+due/i,
+    /bill\s+amt/i,
+    /bill\s+amount/i,
+    /grand\s+total/i,
+    /total\s+amount/i,
+    /net\s+amount/i,
+    /net\s+payable/i,
+    /amount\s+payable/i,
+    /total\s+payable/i,
+    /amount\s+due/i,
+    /total\s+paid/i,
+    /amount\s+paid/i,
+    /final\s+total/i,
+    /\btotal\b/i,
   ];
 
-  for (const regex of totalRegexes) {
-    const match = fullText.match(regex);
-    if (match && match[1]) {
-      const cleaned = match[1].replace(/,/g, '');
-      const parsed = parseFloat(cleaned);
-      if (!isNaN(parsed) && parsed > 0 && parsed < 1000000) {
-        return parsed;
+  const extractNumFromLine = (line: string): number | null => {
+    const matches = line.match(/(?:₹|rs\.?|inr)?\s*([0-9,]+\.?[0-9]*)/gi);
+    if (!matches) return null;
+
+    let bestVal: number | null = null;
+    for (const m of matches) {
+      const clean = m.replace(/[^0-9.]/g, '');
+      const val = parseFloat(clean);
+      if (!isNaN(val) && val > 0 && val < 5000000) {
+        if (val >= 2024 && val <= 2030 && !clean.includes('.')) continue;
+        bestVal = val;
       }
     }
-  }
+    return bestVal;
+  };
 
-  // Fallback: Find largest number on lines containing numbers
-  let maxAmount = 0;
-  for (const line of lines) {
-    const numbers = line.match(/\b\d+(?:\.\d{1,2})?\b/g);
-    if (numbers) {
-      for (const numStr of numbers) {
-        const val = parseFloat(numStr);
-        // Exclude dates like 2026, zip codes, GST numbers
-        if (val > maxAmount && val < 500000 && !/20[2-3][0-9]/.test(numStr)) {
-          maxAmount = val;
+  // 1. Bottom-up keyword match for totals
+  for (const kw of highPriorityKeywords) {
+    for (let i = lines.length - 1; i >= 0; i--) {
+      const line = lines[i];
+      if (kw.test(line)) {
+        const val = extractNumFromLine(line);
+        if (val !== null && val > 0) {
+          return val;
         }
       }
     }
   }
 
-  return maxAmount > 0 ? maxAmount : null;
+  // 2. Generic regex search across text
+  const genericTotalRegexes = [
+    /(?:total|bill\s+amt|grand\s+total|amount\s+due|net\s+payable|amount)\s*[:=₹Rs\.\s]*([0-9,]+(?:\.[0-9]{1,2})?)/gi,
+    /(?:₹|Rs\.?|INR)\s*([0-9,]+(?:\.[0-9]{1,2})?)/gi,
+  ];
+
+  const candidates: number[] = [];
+  for (const reg of genericTotalRegexes) {
+    let match;
+    while ((match = reg.exec(fullText)) !== null) {
+      if (match[1]) {
+        const clean = match[1].replace(/,/g, '');
+        const val = parseFloat(clean);
+        if (!isNaN(val) && val > 0 && val < 5000000) {
+          if (val >= 2024 && val <= 2030 && !clean.includes('.')) continue;
+          candidates.push(val);
+        }
+      }
+    }
+  }
+
+  if (candidates.length > 0) {
+    return Math.max(...candidates);
+  }
+
+  // 3. Fallback: Find maximum valid number
+  const allNums: number[] = [];
+  for (const line of lines) {
+    const nums = line.match(/\b[0-9]+(?:\.[0-9]{1,2})?\b/g);
+    if (nums) {
+      for (const numStr of nums) {
+        const val = parseFloat(numStr);
+        if (!isNaN(val) && val > 0 && val < 5000000) {
+          if (val >= 2024 && val <= 2030 && !numStr.includes('.')) continue;
+          allNums.push(val);
+        }
+      }
+    }
+  }
+
+  if (allNums.length > 0) {
+    return Math.max(...allNums);
+  }
+
+  return null;
 }
 
 // Helper for extracting date
