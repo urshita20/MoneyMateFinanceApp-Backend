@@ -8,13 +8,19 @@ let dbUrl = process.env.DATABASE_URL || 'file:./dev.db';
 if (process.env.VERCEL) {
   const tmpDbPath = '/tmp/dev.db';
   if (!fs.existsSync(tmpDbPath)) {
-    const candidate = path.resolve(process.cwd(), 'dev.db');
-    if (fs.existsSync(candidate)) {
-      try {
-        fs.copyFileSync(candidate, tmpDbPath);
-        console.log(`✅ Copied seeded database to ${tmpDbPath}`);
-      } catch (err) {
-        console.error('Failed copying db to /tmp:', err);
+    const candidates = [
+      path.resolve(process.cwd(), 'dev.db'),
+      path.resolve(process.cwd(), 'prisma/dev.db'),
+    ];
+    for (const candidate of candidates) {
+      if (fs.existsSync(candidate)) {
+        try {
+          fs.copyFileSync(candidate, tmpDbPath);
+          console.log(`✅ Copied initial database from ${candidate} to ${tmpDbPath}`);
+          break;
+        } catch (err) {
+          console.error(`Failed copying ${candidate} to /tmp:`, err);
+        }
       }
     }
   }

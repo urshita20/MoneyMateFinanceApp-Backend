@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "prisma generate && tsc",
+  "buildCommand": "prisma generate && tsc && prisma db push --accept-data-loss && tsx prisma/seed.ts && cp -f prisma/dev.db ./dev.db 2>/dev/null || true",
   "builds": [
     {
       "src": "api/index.ts",

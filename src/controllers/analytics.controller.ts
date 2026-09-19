@@ -179,7 +179,11 @@ export const getMonthlyTrends = async (req: AuthRequest, res: Response) => {
     const monthMap: { [key: string]: { income: number; expense: number } } = {};
 
     for (const tx of transactions) {
-      const monthStr = tx.date.split(' ')[0] || new Date(tx.createdAt).toLocaleString('en-US', { month: 'short' });
+      let d = new Date(tx.date);
+      if (isNaN(d.getTime())) {
+        d = new Date(tx.createdAt);
+      }
+      const monthStr = isNaN(d.getTime()) ? 'Sep' : d.toLocaleString('en-US', { month: 'short' });
       if (!monthMap[monthStr]) {
         monthMap[monthStr] = { income: 0, expense: 0 };
       }
@@ -223,9 +227,12 @@ export const getWeeklyTrends = async (req: AuthRequest, res: Response) => {
     const dayMap: { [key: string]: number } = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
 
     for (const tx of transactions) {
-      const txDate = new Date(tx.createdAt);
+      let txDate = new Date(tx.date);
+      if (isNaN(txDate.getTime())) {
+        txDate = new Date(tx.createdAt);
+      }
       const dayName = daysOfWeek[txDate.getDay()];
-      if (dayMap[dayName] !== undefined) {
+      if (dayName && dayMap[dayName] !== undefined) {
         dayMap[dayName] += tx.amount;
       }
     }
