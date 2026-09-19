@@ -5,32 +5,23 @@ import path from 'path';
 
 let dbUrl = process.env.DATABASE_URL || 'file:./dev.db';
 
-if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+if (process.env.VERCEL) {
   const tmpDbPath = '/tmp/dev.db';
   if (!fs.existsSync(tmpDbPath)) {
-    const candidates = [
-      path.resolve(process.cwd(), 'dev.db'),
-      path.resolve(process.cwd(), 'prisma/dev.db'),
-      path.resolve(process.cwd(), '../dev.db'),
-    ];
-    let copied = false;
-    for (const cand of candidates) {
-      if (fs.existsSync(cand)) {
-        try {
-          fs.copyFileSync(cand, tmpDbPath);
-          console.log(`✅ Copied seeded database from ${cand} to ${tmpDbPath}`);
-          copied = true;
-          break;
-        } catch (err) {
-          console.error(`Failed copying ${cand} to /tmp:`, err);
-        }
+    const candidate = path.resolve(process.cwd(), 'dev.db');
+    if (fs.existsSync(candidate)) {
+      try {
+        fs.copyFileSync(candidate, tmpDbPath);
+        console.log(`✅ Copied seeded database to ${tmpDbPath}`);
+      } catch (err) {
+        console.error('Failed copying db to /tmp:', err);
       }
-    }
-    if (!copied) {
-      console.log('⚠️ Seeded dev.db not found in candidates, Vercel will use empty /tmp/dev.db');
     }
   }
   dbUrl = 'file:/tmp/dev.db';
+} else {
+  const localDbPath = path.resolve(process.cwd(), 'dev.db');
+  dbUrl = `file:${localDbPath}`;
 }
 
 export const prisma = new PrismaClient({
