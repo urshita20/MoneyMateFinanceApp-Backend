@@ -1,0 +1,168 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  password     String
+  name         String
+  role         String        @default("user")
+  profileMode  String        @default("adult") // adult | junior
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  accounts     Account[]
+  transactions Transaction[]
+  budgets      Budget[]
+  goals        Goal[]
+  bills        Bill[]
+  loans        Loan[]
+  investments  Investment[]
+  quests       JuniorQuest[]
+  chatHistories AIChatHistory[]
+}
+
+model Account {
+  id        String   @id @default(uuid())
+  name      String
+  type      String   // bank, credit, cash, investment, savings
+  balance   Float
+  currency  String   @default("INR")
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String
+  emoji     String   @default("🏷️")
+  color     String   @default("#64748B")
+  type      String   @default("expense") // income | expense
+  isDefault Boolean  @default(true)
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  merchant  String
+  amount    Float
+  category  String
+  date      String   // e.g. "Jul 18" or "2026-07-18"
+  emoji     String   @default("💸")
+  type      String   @default("expense") // income | expense | transfer
+  note      String?
+  accountId String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Budget {
+  id           String   @id @default(uuid())
+  category     String
+  budgetAmount Float
+  spentAmount  Float    @default(0)
+  emoji        String   @default("📊")
+  color        String   @default("#6366F1")
+  month        String   // e.g. "Jul 2026"
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Goal {
+  id           String   @id @default(uuid())
+  name         String
+  targetAmount Float
+  savedAmount  Float    @default(0)
+  emoji        String   @default("🎯")
+  color        String   @default("emerald")
+  deadline     String   // e.g. "Dec 2025"
+  aiDate       String?  // e.g. "Nov 2025"
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Bill {
+  id        String   @id @default(uuid())
+  name      String
+  amount    Float
+  dueDate   String   // e.g. "Jul 25"
+  status    String   @default("upcoming") // upcoming | due-soon | due-today | paid
+  emoji     String   @default("📄")
+  recurring Boolean  @default(true)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Loan {
+  id              String   @id @default(uuid())
+  title           String
+  lender          String
+  totalAmount     Float
+  remainingAmount Float
+  interestRate    Float
+  emi             Float
+  dueDate         String
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Investment {
+  id             String   @id @default(uuid())
+  assetName      String
+  type           String   // SIP, Stock, Crypto, FD
+  investedAmount Float
+  currentValue   Float
+  returnsPercent Float
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model KnowledgeArticle {
+  id        String   @id @default(uuid())
+  title     String
+  category  String
+  summary   String
+  readTime  String
+  color     String   @default("blue")
+  content   String?
+  createdAt DateTime @default(now())
+}
+
+model JuniorQuest {
+  id          String   @id @default(uuid())
+  title       String
+  rewardCoins Int
+  completed   Boolean  @default(false)
+  streakCount Int      @default(0)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+model AIChatHistory {
+  id        String   @id @default(uuid())
+  role      String   // user | assistant
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
