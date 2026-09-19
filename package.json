@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc && prisma generate",
-    "start": "prisma db push && tsx prisma/seed.ts && node dist/server.js",
+    "build": "prisma generate && tsc",
+    "postinstall": "prisma generate && tsc",
+    "start": "prisma db push && tsx prisma/seed.ts && tsx src/server.ts",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "tsx prisma/seed.ts"
