@@ -17,10 +17,10 @@ import { errorHandler } from './middlewares/error.middleware.js';
 const app = express();
 
 // Global Middlewares
-app.use(helmet());
+app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*',
+    origin: (origin, callback) => callback(null, true),
     credentials: true,
   })
 );
