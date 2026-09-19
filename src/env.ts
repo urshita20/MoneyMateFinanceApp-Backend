@@ -1,7 +1,17 @@
 import dotenv from 'dotenv';
+import fs from 'fs';
 
-dotenv.config();
+if (fs.existsSync('.env')) {
+  dotenv.config({ path: '.env' });
+} else if (fs.existsSync('.env.default')) {
+  dotenv.config({ path: '.env.default' });
+} else {
+  dotenv.config();
+}
 
 if (!process.env.DATABASE_URL) {
   process.env.DATABASE_URL = 'file:./dev.db';
+}
+if (!process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = 'moneymate_super_secret_jwt_key_2026';
 }

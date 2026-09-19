@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "export DATABASE_URL=\"${DATABASE_URL:-file:./dev.db}\"; prisma generate && tsc",
-    "postinstall": "export DATABASE_URL=\"${DATABASE_URL:-file:./dev.db}\"; prisma generate",
-    "start": "export DATABASE_URL=\"${DATABASE_URL:-file:./dev.db}\"; prisma db push --accept-data-loss && node dist/server.js",
+    "build": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate && tsc",
+    "postinstall": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate",
+    "start": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma db push --accept-data-loss && node dist/server.js",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "tsx prisma/seed.ts"
