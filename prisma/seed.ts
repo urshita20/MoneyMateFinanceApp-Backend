@@ -2,7 +2,15 @@ import '../src/env.js';
 import { PrismaClient } from '../src/generated/client/index.js';
 import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaClient();
+const dbUrl = process.env.DATABASE_URL || 'file:./dev.db';
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: dbUrl,
+    },
+  },
+});
 
 async function main() {
   console.log('🌱 Starting database seed...');
