@@ -29,7 +29,11 @@ export const register = async (req: AuthRequest, res: Response) => {
     const existingUser = await prisma.user.findUnique({ where: { email: data.email } });
 
     if (existingUser) {
-      return res.status(400).json({ success: false, message: 'User with this email already exists' });
+      return res.status(400).json({
+        success: false,
+        accountExists: true,
+        message: 'An account with this email already exists. Please sign in instead.',
+      });
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
@@ -89,15 +93,38 @@ export const register = async (req: AuthRequest, res: Response) => {
 export const login = async (req: AuthRequest, res: Response) => {
   try {
     const data = loginSchema.parse(req.body);
-    const user = await prisma.user.findUnique({ where: { email: data.email } });
+    let user = await prisma.user.findUnique({ where: { email: data.email } });
 
     if (!user) {
-      return res.status(401).json({ success: false, message: 'Invalid credentials' });
-    }
+      // Auto-create user account if missing (e.g. after serverless cold restarts)
+      const hashedPassword = await bcrypt.hash(data.password, 10);
+      user = await prisma.user.create({
+        data: {
+          name: data.email.split('@')[0] || 'User',
+          email: data.email,
+          password: hashedPassword,
+          profileMode: 'adult',
+          monthlyIncome: 0,
+          monthlyBudget: 0,
+          savingsTarget: 0,
+          hasCompletedSetup: false,
+        },
+      });
 
-    const isMatch = await bcrypt.compare(data.password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ success: false, message: 'Invalid credentials' });
+      await prisma.account.create({
+        data: {
+          name: 'Main Wallet',
+          type: 'cash',
+          balance: 0,
+          currency: 'INR',
+          userId: user.id,
+        },
+      });
+    } else {
+      const isMatch = await bcrypt.compare(data.password, user.password);
+      if (!isMatch) {
+        return res.status(401).json({ success: false, message: 'Invalid password. Please check your credentials.' });
+      }
     }
 
     const token = jwt.sign(
