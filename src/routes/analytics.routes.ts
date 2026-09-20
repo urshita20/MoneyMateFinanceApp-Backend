@@ -6,7 +6,7 @@ import {
   getWeeklyTrends,
   getTimeMachineAnalysis,
 } from '../controllers/analytics.controller.js';
-import { chatWithAI, getAIInsights } from '../controllers/ai.controller.js';
+import { chatWithAI, getAIInsights, getAIDashboard } from '../controllers/ai.controller.js';
 import { getInvestments, getLoans } from '../controllers/investment.controller.js';
 import { getKnowledgeArticles, getJuniorQuests, completeJuniorQuest } from '../controllers/knowledge.controller.js';
 import { authenticateToken } from '../middlewares/auth.middleware.js';
@@ -21,6 +21,7 @@ analyticsRouter.get('/time-machine', authenticateToken, getTimeMachineAnalysis);
 export const aiRouter = Router();
 aiRouter.post('/chat', authenticateToken, chatWithAI);
 aiRouter.get('/insights', authenticateToken, getAIInsights);
+aiRouter.get('/dashboard', authenticateToken, getAIDashboard);
 
 export const investmentRouter = Router();
 investmentRouter.get('/', authenticateToken, getInvestments);

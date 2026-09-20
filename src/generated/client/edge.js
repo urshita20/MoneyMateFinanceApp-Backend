@@ -300,7 +300,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/apple/.gemini/antigravity/scratch/moneymate-backend/src/generated/client",
+      "value": "C:\\Users\\AKATH SINGH\\.gemini\\antigravity\\scratch\\MoneyMate-Backend\\src\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -309,12 +309,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/apple/.gemini/antigravity/scratch/moneymate-backend/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\AKATH SINGH\\.gemini\\antigravity\\scratch\\MoneyMate-Backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -328,6 +328,7 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
