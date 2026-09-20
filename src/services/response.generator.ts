@@ -273,7 +273,7 @@ export async function generateChatReply(intent: Intent, snapshot: any, entities:
       // 2. Clean the user's input to extract just the search topic
       const rawTopic = (entities?.topic || intentResult.originalMessage || '').toLowerCase();
       const cleanTopic = rawTopic
-        .replace(/what (is|are)|what's|whats|how (do|to)|explain|meaning of|guide on|learn about|the|a|an|tell me about|best/gi, '')
+        .replace(/\b(what is|what are|what's|whats|how do|how to|explain|meaning of|guide on|learn about|the|a|an|tell me about|best)\b/gi, '')
         .replace(/[?!.]/g, '')
         .trim();
 
