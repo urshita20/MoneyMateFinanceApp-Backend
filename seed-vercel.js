@@ -13,7 +13,7 @@ async function seedVercel() {
   const user = await prisma.user.create({
     data: {
       email: 'demo@moneymate.com',
-      name: 'MoneyMate Demo',
+      name: 'Shreyanshi',
       password: hashedPassword,
       monthlyBudget: 50000,
       monthlyIncome: 80000
