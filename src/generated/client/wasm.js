@@ -294,6 +294,16 @@ exports.Prisma.SharedExpenseSplitScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  read: 'read',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -319,7 +329,8 @@ exports.Prisma.ModelName = {
   JuniorQuest: 'JuniorQuest',
   AIChatHistory: 'AIChatHistory',
   SharedExpense: 'SharedExpense',
-  SharedExpenseSplit: 'SharedExpenseSplit'
+  SharedExpenseSplit: 'SharedExpenseSplit',
+  Notification: 'Notification'
 };
 
 /**

@@ -123,6 +123,20 @@ export const createSharedExpense = async (req: AuthRequest, res: Response) => {
       },
     });
 
+    // Create notifications for participants
+    for (const part of participants) {
+      const splitObj = splitsData.find(s => s.userId === part.id);
+      const shareAmt = splitObj ? splitObj.amount : Math.round((totalAmount / totalPeople) * 100) / 100;
+      await prisma.notification.create({
+        data: {
+          userId: part.id,
+          title: '🤝 New Shared Expense',
+          message: `${payer.name || payer.email.split('@')[0]} added a shared expense: "${expense.description}" (Your share: ₹${shareAmt})`,
+          type: 'shared_expense',
+        },
+      }).catch(err => console.warn('Could not create notification:', err));
+    }
+
     return res.status(201).json({
       success: true,
       message: 'Shared expense created successfully.',
@@ -143,6 +157,8 @@ export const createSharedExpense = async (req: AuthRequest, res: Response) => {
 export const getMySharedExpenses = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
+    const userEmail = req.user?.email?.toLowerCase().trim();
+
     if (!userId) {
       return res.status(401).json({ success: false, message: 'Unauthorized' });
     }
@@ -151,7 +167,9 @@ export const getMySharedExpenses = async (req: AuthRequest, res: Response) => {
       where: {
         OR: [
           { paidById: userId },
+          ...(userEmail ? [{ paidBy: { email: userEmail } }] : []),
           { splits: { some: { userId } } },
+          ...(userEmail ? [{ splits: { some: { user: { email: userEmail } } } }] : []),
         ],
       },
       include: {
@@ -171,37 +189,43 @@ export const getMySharedExpenses = async (req: AuthRequest, res: Response) => {
     const netContactMap: Record<string, { contactId: string; name: string; email: string; netAmount: number }> = {};
 
     expenses.forEach(exp => {
-      const isPayer = exp.paidById === userId;
+      const payerEmail = exp.paidBy?.email?.toLowerCase().trim();
+      const isPayer = exp.paidById === userId || (userEmail && payerEmail === userEmail);
 
       exp.splits.forEach(split => {
         if (split.settled || exp.settled) return;
 
-        if (isPayer && split.userId !== userId) {
+        const splitUserEmail = split.user?.email?.toLowerCase().trim();
+        const isSplitUserMe = split.userId === userId || (userEmail && splitUserEmail === userEmail);
+
+        if (isPayer && !isSplitUserMe) {
           // Others owe the payer
           totalOwedToYou += split.amount;
 
-          if (!netContactMap[split.userId]) {
-            netContactMap[split.userId] = {
+          const contactKey = split.userId;
+          if (!netContactMap[contactKey]) {
+            netContactMap[contactKey] = {
               contactId: split.userId,
               name: split.user.name,
               email: split.user.email,
               netAmount: 0,
             };
           }
-          netContactMap[split.userId].netAmount += split.amount;
-        } else if (!isPayer && split.userId === userId) {
+          netContactMap[contactKey].netAmount += split.amount;
+        } else if (!isPayer && isSplitUserMe) {
           // User owes the payer
           totalYouOwe += split.amount;
 
-          if (!netContactMap[exp.paidById]) {
-            netContactMap[exp.paidById] = {
+          const contactKey = exp.paidById;
+          if (!netContactMap[contactKey]) {
+            netContactMap[contactKey] = {
               contactId: exp.paidById,
               name: exp.paidBy.name,
               email: exp.paidBy.email,
               netAmount: 0,
             };
           }
-          netContactMap[exp.paidById].netAmount -= split.amount;
+          netContactMap[contactKey].netAmount -= split.amount;
         }
       });
     });
@@ -226,6 +250,7 @@ export const getMySharedExpenses = async (req: AuthRequest, res: Response) => {
 export const settleSharedExpense = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
+    const userEmail = req.user?.email?.toLowerCase().trim();
     const id = req.params.id as string;
 
     if (!userId) {
@@ -234,14 +259,25 @@ export const settleSharedExpense = async (req: AuthRequest, res: Response) => {
 
     const expense = await prisma.sharedExpense.findUnique({
       where: { id },
-      include: { splits: true },
+      include: {
+        paidBy: { select: { id: true, name: true, email: true } },
+        splits: {
+          include: {
+            user: { select: { id: true, name: true, email: true } },
+          },
+        },
+      },
     });
 
     if (!expense) {
       return res.status(404).json({ success: false, message: 'Shared expense not found' });
     }
 
-    const isParticipant = expense.paidById === userId || expense.splits.some((s: any) => s.userId === userId);
+    const isParticipant =
+      expense.paidById === userId ||
+      (userEmail && expense.paidBy.email.toLowerCase().trim() === userEmail) ||
+      expense.splits.some((s: any) => s.userId === userId || (userEmail && s.user.email.toLowerCase().trim() === userEmail));
+
     if (!isParticipant) {
       return res.status(403).json({ success: false, message: 'Forbidden' });
     }
@@ -268,6 +304,23 @@ export const settleSharedExpense = async (req: AuthRequest, res: Response) => {
         },
       },
     });
+
+    // Notify all participants about settlement
+    const settlerName = userEmail ? userEmail.split('@')[0] : 'Friend';
+    const targetUserIds = [expense.paidById, ...expense.splits.map((s: any) => s.userId)].filter(
+      (uid, idx, self) => uid !== userId && self.indexOf(uid) === idx
+    );
+
+    for (const targetId of targetUserIds) {
+      await prisma.notification.create({
+        data: {
+          userId: targetId,
+          title: '✅ Shared Expense Settled',
+          message: `${settlerName} settled the shared expense: "${expense.description}"`,
+          type: 'settlement',
+        },
+      }).catch(err => console.warn('Could not create settlement notification:', err));
+    }
 
     return res.json({
       success: true,

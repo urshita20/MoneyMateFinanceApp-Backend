@@ -14,6 +14,7 @@ import {
   juniorRouter,
 } from './routes/analytics.routes.js';
 import expenseRoutes from './routes/expense.routes.js';
+import notificationRoutes from './routes/notification.routes.js';
 import { errorHandler } from './middlewares/error.middleware.js';
 
 const app = express();
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
       goals: '/api/goals',
       bills: '/api/bills',
       expenses: '/api/expenses',
+      notifications: '/api/notifications',
       analytics: '/api/analytics/summary',
       ai: '/api/ai/insights',
       investments: '/api/investments',
@@ -64,6 +66,7 @@ app.use('/api/budgets', budgetRouter);
 app.use('/api/goals', goalRouter);
 app.use('/api/bills', billRouter);
 app.use('/api/expenses', expenseRoutes);
+app.use('/api/notifications', notificationRoutes);
 app.use('/api/analytics', analyticsRouter);
 app.use('/api/ai', aiRouter);
 app.use('/api/investments', investmentRouter);
