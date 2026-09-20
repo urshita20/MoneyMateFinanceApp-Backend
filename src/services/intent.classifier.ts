@@ -14,6 +14,7 @@ export type Intent =
   | 'CREDIT_QUERY'
   | 'LOAN_QUERY'
   | 'FORECAST_QUERY'
+  | 'EDUCATION_QUERY'
   | 'GENERAL_GREETING'
   | 'GENERAL_HELP'
   | 'UNKNOWN';
@@ -37,6 +38,7 @@ const intentKeywords: Record<Intent, string[]> = {
   CREDIT_QUERY: ['credit score', 'cibil', 'credit card', 'improve credit'],
   LOAN_QUERY: ['loan', 'emi', 'prepay', 'home loan', 'personal loan', 'interest', 'udhaar', 'karz'],
   FORECAST_QUERY: ['predict', 'forecast', 'next month', 'projection', 'future', 'estimate'],
+  EDUCATION_QUERY: ['what is', 'what are', 'how do', 'how to', 'explain', 'meaning of', 'tell me about', 'guide', 'learn about', 'are working'],
   GENERAL_GREETING: ['hi', 'hello', 'hey', 'good morning', 'good evening', 'namaste', 'pranam', 'sup'],
   GENERAL_HELP: ['help', 'what can you do', 'features', 'how to use', 'kya kar sakte ho', 'assist'],
   UNKNOWN: []
@@ -78,6 +80,16 @@ export function extractTimePeriod(message: string): 'this_month' | 'last_month' 
 export function classifyIntent(message: string): ClassifiedIntent {
   const lowerMsg = message.toLowerCase();
   
+  // Strong override for educational questions
+  if (/what (is|are)|how (do|to)|explain|meaning of|guide on|learn about/.test(lowerMsg)) {
+    return {
+      intent: 'EDUCATION_QUERY',
+      confidence: 0.9,
+      entities: { topic: lowerMsg },
+      originalMessage: message
+    };
+  }
+
   let bestIntent: Intent = 'UNKNOWN';
   let maxScore = 0;
   let matches = 0;

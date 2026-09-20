@@ -259,6 +259,42 @@ export async function generateChatReply(intent: Intent, snapshot: any, entities:
         tone: 'greeting'
       };
     }
+    case 'EDUCATION_QUERY': {
+      const KNOWLEDGE_BASE: Record<string, string> = {
+        'mutual fund': 'A Mutual Fund is a pool of money collected from many investors to invest in stocks, bonds, or other securities. It is managed by professional fund managers.',
+        'sip': 'SIP (Systematic Investment Plan) allows you to invest a fixed amount regularly (e.g., monthly) in a mutual fund, helping you build wealth through the power of compounding.',
+        'tax': 'Income tax is a percentage of your income paid to the government. The New Tax Regime offers lower rates but removes most exemptions, while the Old Regime has higher rates but allows deductions like 80C (PPF, ELSS).',
+        'emergency fund': 'An emergency fund is a stash of cash set aside specifically to cover unexpected financial surprises (like medical emergencies or job loss). A good rule of thumb is saving 3-6 months of expenses.',
+        'budget': 'A budget is a plan for your money. A popular rule is the 50/30/20 rule: 50% for Needs (rent, groceries), 30% for Wants (entertainment, dining), and 20% for Savings and Investing.',
+        'stock': 'A stock represents a share in the ownership of a company. When you buy a stock, you become a partial owner of that company.',
+        'fd': 'An FD (Fixed Deposit) is a safe investment where you deposit a lump sum with a bank for a fixed period at a guaranteed interest rate.',
+        'credit score': 'Your credit score (or CIBIL score) is a 3-digit number representing your creditworthiness. A score above 750 is generally considered excellent for getting loans.',
+        'loan': 'A loan is money borrowed that must be repaid with interest. Prepaping loans with high interest (like personal loans or credit cards) should be your first priority.'
+      };
+
+      const topic = entities?.topic || '';
+      let bestMatch = '';
+      let reply = '';
+
+      for (const [key, definition] of Object.entries(KNOWLEDGE_BASE)) {
+        if (topic.includes(key)) {
+          bestMatch = key;
+          reply = definition;
+          break;
+        }
+      }
+
+      if (!reply) {
+        reply = "That's a great question! While I focus mostly on analyzing your personal transaction data, understanding these financial concepts is key to growing your wealth.";
+      }
+
+      return {
+        reply,
+        tone: 'info',
+        followUp: "Is there another financial term you'd like me to explain, or would you like to check your own budget?"
+      };
+    }
+
     case 'GENERAL_HELP': {
       const templates = [
         `I can help you with several things:\n- 📊 **Budgeting**: Track and set budget limits\n- 💰 **Savings & Goals**: Monitor your progress\n- 🧾 **Bills**: Keep track of upcoming payments\n- 📈 **Investments & Loans**: Manage your portfolio\n- 💡 **Insights**: Get personalized financial tips`,
