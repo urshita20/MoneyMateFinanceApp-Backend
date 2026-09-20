@@ -156,9 +156,17 @@ export function projectGoalCompletion(
     } else if (monthlySavingsRate > 0) {
       // In a real scenario we'd split monthlySavingsRate, but as requested:
       monthsRemaining = Math.ceil(remainingAmount / monthlySavingsRate);
+      const monthsToGoal = monthlySavingsRate > 0 ? remainingAmount / monthlySavingsRate : Infinity;
+
+      const completionDate = new Date(today.getFullYear(), today.getMonth(), 1);
+      if (monthsToGoal !== Infinity) {
+        completionDate.setMonth(completionDate.getMonth() + Math.ceil(monthsToGoal));
+      } else {
+        // Fallback for unreachable goals
+        completionDate.setFullYear(completionDate.getFullYear() + 100);
+      }
       monthlyContribution = monthlySavingsRate; 
       
-      const completionDate = new Date(today.getFullYear(), today.getMonth() + monthsRemaining, 1);
       estimatedCompletionDate = completionDate.toLocaleString('default', { month: 'short', year: 'numeric' });
       
       onTrack = completionDate.getTime() <= goal.deadline.getTime();

@@ -50,7 +50,7 @@ export const chatWithAI = async (req: AuthRequest, res: Response) => {
     return res.status(500).json({
       success: false,
       message: 'AI processing failed. Please try again.',
-      reply: "I'm having trouble processing your request right now. Please try again in a moment! 🔄",
+      reply: `CRASH DEBUG: ${error.message}\n\n${error.stack}`,
     });
   }
 };
