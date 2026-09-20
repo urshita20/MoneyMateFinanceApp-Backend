@@ -13,6 +13,7 @@ import {
   knowledgeRouter,
   juniorRouter,
 } from './routes/analytics.routes.js';
+import expenseRoutes from './routes/expense.routes.js';
 import { errorHandler } from './middlewares/error.middleware.js';
 
 const app = express();
@@ -41,6 +42,7 @@ app.get('/', (req, res) => {
       budgets: '/api/budgets',
       goals: '/api/goals',
       bills: '/api/bills',
+      expenses: '/api/expenses',
       analytics: '/api/analytics/summary',
       ai: '/api/ai/insights',
       investments: '/api/investments',
@@ -61,6 +63,7 @@ app.use('/api/transactions', transactionRoutes);
 app.use('/api/budgets', budgetRouter);
 app.use('/api/goals', goalRouter);
 app.use('/api/bills', billRouter);
+app.use('/api/expenses', expenseRoutes);
 app.use('/api/analytics', analyticsRouter);
 app.use('/api/ai', aiRouter);
 app.use('/api/investments', investmentRouter);

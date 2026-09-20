@@ -31,6 +31,8 @@ model User {
   investments   Investment[]
   quests        JuniorQuest[]
   chatHistories AIChatHistory[]
+  expensesPaid  SharedExpense[]      @relation("ExpensesPaid")
+  expenseSplits SharedExpenseSplit[]
 }
 
 model Account {
@@ -176,4 +178,33 @@ model AIChatHistory {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+}
+
+model SharedExpense {
+  id          String    @id @default(uuid())
+  description String
+  amount      Float
+  category    String    @default("General")
+  groupName   String    @default("Personal")
+  paidById    String
+  paidBy      User      @relation("ExpensesPaid", fields: [paidById], references: [id], onDelete: Cascade)
+  settled     Boolean   @default(false)
+  settledAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  splits SharedExpenseSplit[]
+}
+
+model SharedExpenseSplit {
+  id              String        @id @default(uuid())
+  sharedExpenseId String
+  sharedExpense   SharedExpense @relation(fields: [sharedExpenseId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount          Float
+  settled         Boolean       @default(false)
+  settledAt       DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }

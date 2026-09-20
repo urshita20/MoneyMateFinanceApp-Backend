@@ -270,6 +270,30 @@ exports.Prisma.AIChatHistoryScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.SharedExpenseScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  amount: 'amount',
+  category: 'category',
+  groupName: 'groupName',
+  paidById: 'paidById',
+  settled: 'settled',
+  settledAt: 'settledAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SharedExpenseSplitScalarFieldEnum = {
+  id: 'id',
+  sharedExpenseId: 'sharedExpenseId',
+  userId: 'userId',
+  amount: 'amount',
+  settled: 'settled',
+  settledAt: 'settledAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -293,7 +317,9 @@ exports.Prisma.ModelName = {
   Investment: 'Investment',
   KnowledgeArticle: 'KnowledgeArticle',
   JuniorQuest: 'JuniorQuest',
-  AIChatHistory: 'AIChatHistory'
+  AIChatHistory: 'AIChatHistory',
+  SharedExpense: 'SharedExpense',
+  SharedExpenseSplit: 'SharedExpenseSplit'
 };
 
 /**

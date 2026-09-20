@@ -73,6 +73,16 @@ export type JuniorQuest = $Result.DefaultSelection<Prisma.$JuniorQuestPayload>
  * 
  */
 export type AIChatHistory = $Result.DefaultSelection<Prisma.$AIChatHistoryPayload>
+/**
+ * Model SharedExpense
+ * 
+ */
+export type SharedExpense = $Result.DefaultSelection<Prisma.$SharedExpensePayload>
+/**
+ * Model SharedExpenseSplit
+ * 
+ */
+export type SharedExpenseSplit = $Result.DefaultSelection<Prisma.$SharedExpenseSplitPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -316,6 +326,26 @@ export class PrismaClient<
     * ```
     */
   get aIChatHistory(): Prisma.AIChatHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.sharedExpense`: Exposes CRUD operations for the **SharedExpense** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SharedExpenses
+    * const sharedExpenses = await prisma.sharedExpense.findMany()
+    * ```
+    */
+  get sharedExpense(): Prisma.SharedExpenseDelegate<ExtArgs>;
+
+  /**
+   * `prisma.sharedExpenseSplit`: Exposes CRUD operations for the **SharedExpenseSplit** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SharedExpenseSplits
+    * const sharedExpenseSplits = await prisma.sharedExpenseSplit.findMany()
+    * ```
+    */
+  get sharedExpenseSplit(): Prisma.SharedExpenseSplitDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -768,7 +798,9 @@ export namespace Prisma {
     Investment: 'Investment',
     KnowledgeArticle: 'KnowledgeArticle',
     JuniorQuest: 'JuniorQuest',
-    AIChatHistory: 'AIChatHistory'
+    AIChatHistory: 'AIChatHistory',
+    SharedExpense: 'SharedExpense',
+    SharedExpenseSplit: 'SharedExpenseSplit'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -784,7 +816,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "account" | "category" | "transaction" | "budget" | "goal" | "bill" | "loan" | "investment" | "knowledgeArticle" | "juniorQuest" | "aIChatHistory"
+      modelProps: "user" | "account" | "category" | "transaction" | "budget" | "goal" | "bill" | "loan" | "investment" | "knowledgeArticle" | "juniorQuest" | "aIChatHistory" | "sharedExpense" | "sharedExpenseSplit"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1628,6 +1660,146 @@ export namespace Prisma {
           }
         }
       }
+      SharedExpense: {
+        payload: Prisma.$SharedExpensePayload<ExtArgs>
+        fields: Prisma.SharedExpenseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SharedExpenseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SharedExpenseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>
+          }
+          findFirst: {
+            args: Prisma.SharedExpenseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SharedExpenseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>
+          }
+          findMany: {
+            args: Prisma.SharedExpenseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>[]
+          }
+          create: {
+            args: Prisma.SharedExpenseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>
+          }
+          createMany: {
+            args: Prisma.SharedExpenseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SharedExpenseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>[]
+          }
+          delete: {
+            args: Prisma.SharedExpenseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>
+          }
+          update: {
+            args: Prisma.SharedExpenseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>
+          }
+          deleteMany: {
+            args: Prisma.SharedExpenseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SharedExpenseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SharedExpenseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpensePayload>
+          }
+          aggregate: {
+            args: Prisma.SharedExpenseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSharedExpense>
+          }
+          groupBy: {
+            args: Prisma.SharedExpenseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SharedExpenseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SharedExpenseCountArgs<ExtArgs>
+            result: $Utils.Optional<SharedExpenseCountAggregateOutputType> | number
+          }
+        }
+      }
+      SharedExpenseSplit: {
+        payload: Prisma.$SharedExpenseSplitPayload<ExtArgs>
+        fields: Prisma.SharedExpenseSplitFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SharedExpenseSplitFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SharedExpenseSplitFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>
+          }
+          findFirst: {
+            args: Prisma.SharedExpenseSplitFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SharedExpenseSplitFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>
+          }
+          findMany: {
+            args: Prisma.SharedExpenseSplitFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>[]
+          }
+          create: {
+            args: Prisma.SharedExpenseSplitCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>
+          }
+          createMany: {
+            args: Prisma.SharedExpenseSplitCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SharedExpenseSplitCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>[]
+          }
+          delete: {
+            args: Prisma.SharedExpenseSplitDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>
+          }
+          update: {
+            args: Prisma.SharedExpenseSplitUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>
+          }
+          deleteMany: {
+            args: Prisma.SharedExpenseSplitDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SharedExpenseSplitUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SharedExpenseSplitUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SharedExpenseSplitPayload>
+          }
+          aggregate: {
+            args: Prisma.SharedExpenseSplitAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSharedExpenseSplit>
+          }
+          groupBy: {
+            args: Prisma.SharedExpenseSplitGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SharedExpenseSplitGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SharedExpenseSplitCountArgs<ExtArgs>
+            result: $Utils.Optional<SharedExpenseSplitCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1798,6 +1970,8 @@ export namespace Prisma {
     investments: number
     quests: number
     chatHistories: number
+    expensesPaid: number
+    expenseSplits: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1810,6 +1984,8 @@ export namespace Prisma {
     investments?: boolean | UserCountOutputTypeCountInvestmentsArgs
     quests?: boolean | UserCountOutputTypeCountQuestsArgs
     chatHistories?: boolean | UserCountOutputTypeCountChatHistoriesArgs
+    expensesPaid?: boolean | UserCountOutputTypeCountExpensesPaidArgs
+    expenseSplits?: boolean | UserCountOutputTypeCountExpenseSplitsArgs
   }
 
   // Custom InputTypes
@@ -1884,6 +2060,51 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountChatHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AIChatHistoryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountExpensesPaidArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SharedExpenseWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountExpenseSplitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SharedExpenseSplitWhereInput
+  }
+
+
+  /**
+   * Count Type SharedExpenseCountOutputType
+   */
+
+  export type SharedExpenseCountOutputType = {
+    splits: number
+  }
+
+  export type SharedExpenseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    splits?: boolean | SharedExpenseCountOutputTypeCountSplitsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SharedExpenseCountOutputType without action
+   */
+  export type SharedExpenseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseCountOutputType
+     */
+    select?: SharedExpenseCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SharedExpenseCountOutputType without action
+   */
+  export type SharedExpenseCountOutputTypeCountSplitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SharedExpenseSplitWhereInput
   }
 
 
@@ -2162,6 +2383,8 @@ export namespace Prisma {
     investments?: boolean | User$investmentsArgs<ExtArgs>
     quests?: boolean | User$questsArgs<ExtArgs>
     chatHistories?: boolean | User$chatHistoriesArgs<ExtArgs>
+    expensesPaid?: boolean | User$expensesPaidArgs<ExtArgs>
+    expenseSplits?: boolean | User$expenseSplitsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2205,6 +2428,8 @@ export namespace Prisma {
     investments?: boolean | User$investmentsArgs<ExtArgs>
     quests?: boolean | User$questsArgs<ExtArgs>
     chatHistories?: boolean | User$chatHistoriesArgs<ExtArgs>
+    expensesPaid?: boolean | User$expensesPaidArgs<ExtArgs>
+    expenseSplits?: boolean | User$expenseSplitsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2221,6 +2446,8 @@ export namespace Prisma {
       investments: Prisma.$InvestmentPayload<ExtArgs>[]
       quests: Prisma.$JuniorQuestPayload<ExtArgs>[]
       chatHistories: Prisma.$AIChatHistoryPayload<ExtArgs>[]
+      expensesPaid: Prisma.$SharedExpensePayload<ExtArgs>[]
+      expenseSplits: Prisma.$SharedExpenseSplitPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2608,6 +2835,8 @@ export namespace Prisma {
     investments<T extends User$investmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$investmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestmentPayload<ExtArgs>, T, "findMany"> | Null>
     quests<T extends User$questsArgs<ExtArgs> = {}>(args?: Subset<T, User$questsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JuniorQuestPayload<ExtArgs>, T, "findMany"> | Null>
     chatHistories<T extends User$chatHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, User$chatHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIChatHistoryPayload<ExtArgs>, T, "findMany"> | Null>
+    expensesPaid<T extends User$expensesPaidArgs<ExtArgs> = {}>(args?: Subset<T, User$expensesPaidArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "findMany"> | Null>
+    expenseSplits<T extends User$expenseSplitsArgs<ExtArgs> = {}>(args?: Subset<T, User$expenseSplitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3138,6 +3367,46 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AIChatHistoryScalarFieldEnum | AIChatHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.expensesPaid
+   */
+  export type User$expensesPaidArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    where?: SharedExpenseWhereInput
+    orderBy?: SharedExpenseOrderByWithRelationInput | SharedExpenseOrderByWithRelationInput[]
+    cursor?: SharedExpenseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SharedExpenseScalarFieldEnum | SharedExpenseScalarFieldEnum[]
+  }
+
+  /**
+   * User.expenseSplits
+   */
+  export type User$expenseSplitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    where?: SharedExpenseSplitWhereInput
+    orderBy?: SharedExpenseSplitOrderByWithRelationInput | SharedExpenseSplitOrderByWithRelationInput[]
+    cursor?: SharedExpenseSplitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SharedExpenseSplitScalarFieldEnum | SharedExpenseSplitScalarFieldEnum[]
   }
 
   /**
@@ -14167,6 +14436,2064 @@ export namespace Prisma {
 
 
   /**
+   * Model SharedExpense
+   */
+
+  export type AggregateSharedExpense = {
+    _count: SharedExpenseCountAggregateOutputType | null
+    _avg: SharedExpenseAvgAggregateOutputType | null
+    _sum: SharedExpenseSumAggregateOutputType | null
+    _min: SharedExpenseMinAggregateOutputType | null
+    _max: SharedExpenseMaxAggregateOutputType | null
+  }
+
+  export type SharedExpenseAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type SharedExpenseSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type SharedExpenseMinAggregateOutputType = {
+    id: string | null
+    description: string | null
+    amount: number | null
+    category: string | null
+    groupName: string | null
+    paidById: string | null
+    settled: boolean | null
+    settledAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SharedExpenseMaxAggregateOutputType = {
+    id: string | null
+    description: string | null
+    amount: number | null
+    category: string | null
+    groupName: string | null
+    paidById: string | null
+    settled: boolean | null
+    settledAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SharedExpenseCountAggregateOutputType = {
+    id: number
+    description: number
+    amount: number
+    category: number
+    groupName: number
+    paidById: number
+    settled: number
+    settledAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SharedExpenseAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type SharedExpenseSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type SharedExpenseMinAggregateInputType = {
+    id?: true
+    description?: true
+    amount?: true
+    category?: true
+    groupName?: true
+    paidById?: true
+    settled?: true
+    settledAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SharedExpenseMaxAggregateInputType = {
+    id?: true
+    description?: true
+    amount?: true
+    category?: true
+    groupName?: true
+    paidById?: true
+    settled?: true
+    settledAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SharedExpenseCountAggregateInputType = {
+    id?: true
+    description?: true
+    amount?: true
+    category?: true
+    groupName?: true
+    paidById?: true
+    settled?: true
+    settledAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SharedExpenseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SharedExpense to aggregate.
+     */
+    where?: SharedExpenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenses to fetch.
+     */
+    orderBy?: SharedExpenseOrderByWithRelationInput | SharedExpenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SharedExpenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SharedExpenses
+    **/
+    _count?: true | SharedExpenseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SharedExpenseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SharedExpenseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SharedExpenseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SharedExpenseMaxAggregateInputType
+  }
+
+  export type GetSharedExpenseAggregateType<T extends SharedExpenseAggregateArgs> = {
+        [P in keyof T & keyof AggregateSharedExpense]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSharedExpense[P]>
+      : GetScalarType<T[P], AggregateSharedExpense[P]>
+  }
+
+
+
+
+  export type SharedExpenseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SharedExpenseWhereInput
+    orderBy?: SharedExpenseOrderByWithAggregationInput | SharedExpenseOrderByWithAggregationInput[]
+    by: SharedExpenseScalarFieldEnum[] | SharedExpenseScalarFieldEnum
+    having?: SharedExpenseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SharedExpenseCountAggregateInputType | true
+    _avg?: SharedExpenseAvgAggregateInputType
+    _sum?: SharedExpenseSumAggregateInputType
+    _min?: SharedExpenseMinAggregateInputType
+    _max?: SharedExpenseMaxAggregateInputType
+  }
+
+  export type SharedExpenseGroupByOutputType = {
+    id: string
+    description: string
+    amount: number
+    category: string
+    groupName: string
+    paidById: string
+    settled: boolean
+    settledAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SharedExpenseCountAggregateOutputType | null
+    _avg: SharedExpenseAvgAggregateOutputType | null
+    _sum: SharedExpenseSumAggregateOutputType | null
+    _min: SharedExpenseMinAggregateOutputType | null
+    _max: SharedExpenseMaxAggregateOutputType | null
+  }
+
+  type GetSharedExpenseGroupByPayload<T extends SharedExpenseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SharedExpenseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SharedExpenseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SharedExpenseGroupByOutputType[P]>
+            : GetScalarType<T[P], SharedExpenseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SharedExpenseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    description?: boolean
+    amount?: boolean
+    category?: boolean
+    groupName?: boolean
+    paidById?: boolean
+    settled?: boolean
+    settledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    paidBy?: boolean | UserDefaultArgs<ExtArgs>
+    splits?: boolean | SharedExpense$splitsArgs<ExtArgs>
+    _count?: boolean | SharedExpenseCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sharedExpense"]>
+
+  export type SharedExpenseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    description?: boolean
+    amount?: boolean
+    category?: boolean
+    groupName?: boolean
+    paidById?: boolean
+    settled?: boolean
+    settledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    paidBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sharedExpense"]>
+
+  export type SharedExpenseSelectScalar = {
+    id?: boolean
+    description?: boolean
+    amount?: boolean
+    category?: boolean
+    groupName?: boolean
+    paidById?: boolean
+    settled?: boolean
+    settledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SharedExpenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    paidBy?: boolean | UserDefaultArgs<ExtArgs>
+    splits?: boolean | SharedExpense$splitsArgs<ExtArgs>
+    _count?: boolean | SharedExpenseCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SharedExpenseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    paidBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SharedExpensePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SharedExpense"
+    objects: {
+      paidBy: Prisma.$UserPayload<ExtArgs>
+      splits: Prisma.$SharedExpenseSplitPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      description: string
+      amount: number
+      category: string
+      groupName: string
+      paidById: string
+      settled: boolean
+      settledAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["sharedExpense"]>
+    composites: {}
+  }
+
+  type SharedExpenseGetPayload<S extends boolean | null | undefined | SharedExpenseDefaultArgs> = $Result.GetResult<Prisma.$SharedExpensePayload, S>
+
+  type SharedExpenseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SharedExpenseFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SharedExpenseCountAggregateInputType | true
+    }
+
+  export interface SharedExpenseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SharedExpense'], meta: { name: 'SharedExpense' } }
+    /**
+     * Find zero or one SharedExpense that matches the filter.
+     * @param {SharedExpenseFindUniqueArgs} args - Arguments to find a SharedExpense
+     * @example
+     * // Get one SharedExpense
+     * const sharedExpense = await prisma.sharedExpense.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SharedExpenseFindUniqueArgs>(args: SelectSubset<T, SharedExpenseFindUniqueArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one SharedExpense that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {SharedExpenseFindUniqueOrThrowArgs} args - Arguments to find a SharedExpense
+     * @example
+     * // Get one SharedExpense
+     * const sharedExpense = await prisma.sharedExpense.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SharedExpenseFindUniqueOrThrowArgs>(args: SelectSubset<T, SharedExpenseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first SharedExpense that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseFindFirstArgs} args - Arguments to find a SharedExpense
+     * @example
+     * // Get one SharedExpense
+     * const sharedExpense = await prisma.sharedExpense.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SharedExpenseFindFirstArgs>(args?: SelectSubset<T, SharedExpenseFindFirstArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first SharedExpense that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseFindFirstOrThrowArgs} args - Arguments to find a SharedExpense
+     * @example
+     * // Get one SharedExpense
+     * const sharedExpense = await prisma.sharedExpense.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SharedExpenseFindFirstOrThrowArgs>(args?: SelectSubset<T, SharedExpenseFindFirstOrThrowArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more SharedExpenses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SharedExpenses
+     * const sharedExpenses = await prisma.sharedExpense.findMany()
+     * 
+     * // Get first 10 SharedExpenses
+     * const sharedExpenses = await prisma.sharedExpense.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sharedExpenseWithIdOnly = await prisma.sharedExpense.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SharedExpenseFindManyArgs>(args?: SelectSubset<T, SharedExpenseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a SharedExpense.
+     * @param {SharedExpenseCreateArgs} args - Arguments to create a SharedExpense.
+     * @example
+     * // Create one SharedExpense
+     * const SharedExpense = await prisma.sharedExpense.create({
+     *   data: {
+     *     // ... data to create a SharedExpense
+     *   }
+     * })
+     * 
+     */
+    create<T extends SharedExpenseCreateArgs>(args: SelectSubset<T, SharedExpenseCreateArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many SharedExpenses.
+     * @param {SharedExpenseCreateManyArgs} args - Arguments to create many SharedExpenses.
+     * @example
+     * // Create many SharedExpenses
+     * const sharedExpense = await prisma.sharedExpense.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SharedExpenseCreateManyArgs>(args?: SelectSubset<T, SharedExpenseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SharedExpenses and returns the data saved in the database.
+     * @param {SharedExpenseCreateManyAndReturnArgs} args - Arguments to create many SharedExpenses.
+     * @example
+     * // Create many SharedExpenses
+     * const sharedExpense = await prisma.sharedExpense.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SharedExpenses and only return the `id`
+     * const sharedExpenseWithIdOnly = await prisma.sharedExpense.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SharedExpenseCreateManyAndReturnArgs>(args?: SelectSubset<T, SharedExpenseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a SharedExpense.
+     * @param {SharedExpenseDeleteArgs} args - Arguments to delete one SharedExpense.
+     * @example
+     * // Delete one SharedExpense
+     * const SharedExpense = await prisma.sharedExpense.delete({
+     *   where: {
+     *     // ... filter to delete one SharedExpense
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SharedExpenseDeleteArgs>(args: SelectSubset<T, SharedExpenseDeleteArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one SharedExpense.
+     * @param {SharedExpenseUpdateArgs} args - Arguments to update one SharedExpense.
+     * @example
+     * // Update one SharedExpense
+     * const sharedExpense = await prisma.sharedExpense.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SharedExpenseUpdateArgs>(args: SelectSubset<T, SharedExpenseUpdateArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more SharedExpenses.
+     * @param {SharedExpenseDeleteManyArgs} args - Arguments to filter SharedExpenses to delete.
+     * @example
+     * // Delete a few SharedExpenses
+     * const { count } = await prisma.sharedExpense.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SharedExpenseDeleteManyArgs>(args?: SelectSubset<T, SharedExpenseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SharedExpenses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SharedExpenses
+     * const sharedExpense = await prisma.sharedExpense.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SharedExpenseUpdateManyArgs>(args: SelectSubset<T, SharedExpenseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SharedExpense.
+     * @param {SharedExpenseUpsertArgs} args - Arguments to update or create a SharedExpense.
+     * @example
+     * // Update or create a SharedExpense
+     * const sharedExpense = await prisma.sharedExpense.upsert({
+     *   create: {
+     *     // ... data to create a SharedExpense
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SharedExpense we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SharedExpenseUpsertArgs>(args: SelectSubset<T, SharedExpenseUpsertArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of SharedExpenses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseCountArgs} args - Arguments to filter SharedExpenses to count.
+     * @example
+     * // Count the number of SharedExpenses
+     * const count = await prisma.sharedExpense.count({
+     *   where: {
+     *     // ... the filter for the SharedExpenses we want to count
+     *   }
+     * })
+    **/
+    count<T extends SharedExpenseCountArgs>(
+      args?: Subset<T, SharedExpenseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SharedExpenseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SharedExpense.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SharedExpenseAggregateArgs>(args: Subset<T, SharedExpenseAggregateArgs>): Prisma.PrismaPromise<GetSharedExpenseAggregateType<T>>
+
+    /**
+     * Group by SharedExpense.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SharedExpenseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SharedExpenseGroupByArgs['orderBy'] }
+        : { orderBy?: SharedExpenseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SharedExpenseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSharedExpenseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SharedExpense model
+   */
+  readonly fields: SharedExpenseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SharedExpense.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SharedExpenseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    paidBy<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    splits<T extends SharedExpense$splitsArgs<ExtArgs> = {}>(args?: Subset<T, SharedExpense$splitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SharedExpense model
+   */ 
+  interface SharedExpenseFieldRefs {
+    readonly id: FieldRef<"SharedExpense", 'String'>
+    readonly description: FieldRef<"SharedExpense", 'String'>
+    readonly amount: FieldRef<"SharedExpense", 'Float'>
+    readonly category: FieldRef<"SharedExpense", 'String'>
+    readonly groupName: FieldRef<"SharedExpense", 'String'>
+    readonly paidById: FieldRef<"SharedExpense", 'String'>
+    readonly settled: FieldRef<"SharedExpense", 'Boolean'>
+    readonly settledAt: FieldRef<"SharedExpense", 'DateTime'>
+    readonly createdAt: FieldRef<"SharedExpense", 'DateTime'>
+    readonly updatedAt: FieldRef<"SharedExpense", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SharedExpense findUnique
+   */
+  export type SharedExpenseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpense to fetch.
+     */
+    where: SharedExpenseWhereUniqueInput
+  }
+
+  /**
+   * SharedExpense findUniqueOrThrow
+   */
+  export type SharedExpenseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpense to fetch.
+     */
+    where: SharedExpenseWhereUniqueInput
+  }
+
+  /**
+   * SharedExpense findFirst
+   */
+  export type SharedExpenseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpense to fetch.
+     */
+    where?: SharedExpenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenses to fetch.
+     */
+    orderBy?: SharedExpenseOrderByWithRelationInput | SharedExpenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SharedExpenses.
+     */
+    cursor?: SharedExpenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SharedExpenses.
+     */
+    distinct?: SharedExpenseScalarFieldEnum | SharedExpenseScalarFieldEnum[]
+  }
+
+  /**
+   * SharedExpense findFirstOrThrow
+   */
+  export type SharedExpenseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpense to fetch.
+     */
+    where?: SharedExpenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenses to fetch.
+     */
+    orderBy?: SharedExpenseOrderByWithRelationInput | SharedExpenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SharedExpenses.
+     */
+    cursor?: SharedExpenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SharedExpenses.
+     */
+    distinct?: SharedExpenseScalarFieldEnum | SharedExpenseScalarFieldEnum[]
+  }
+
+  /**
+   * SharedExpense findMany
+   */
+  export type SharedExpenseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpenses to fetch.
+     */
+    where?: SharedExpenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenses to fetch.
+     */
+    orderBy?: SharedExpenseOrderByWithRelationInput | SharedExpenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SharedExpenses.
+     */
+    cursor?: SharedExpenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenses.
+     */
+    skip?: number
+    distinct?: SharedExpenseScalarFieldEnum | SharedExpenseScalarFieldEnum[]
+  }
+
+  /**
+   * SharedExpense create
+   */
+  export type SharedExpenseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SharedExpense.
+     */
+    data: XOR<SharedExpenseCreateInput, SharedExpenseUncheckedCreateInput>
+  }
+
+  /**
+   * SharedExpense createMany
+   */
+  export type SharedExpenseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SharedExpenses.
+     */
+    data: SharedExpenseCreateManyInput | SharedExpenseCreateManyInput[]
+  }
+
+  /**
+   * SharedExpense createManyAndReturn
+   */
+  export type SharedExpenseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many SharedExpenses.
+     */
+    data: SharedExpenseCreateManyInput | SharedExpenseCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SharedExpense update
+   */
+  export type SharedExpenseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SharedExpense.
+     */
+    data: XOR<SharedExpenseUpdateInput, SharedExpenseUncheckedUpdateInput>
+    /**
+     * Choose, which SharedExpense to update.
+     */
+    where: SharedExpenseWhereUniqueInput
+  }
+
+  /**
+   * SharedExpense updateMany
+   */
+  export type SharedExpenseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SharedExpenses.
+     */
+    data: XOR<SharedExpenseUpdateManyMutationInput, SharedExpenseUncheckedUpdateManyInput>
+    /**
+     * Filter which SharedExpenses to update
+     */
+    where?: SharedExpenseWhereInput
+  }
+
+  /**
+   * SharedExpense upsert
+   */
+  export type SharedExpenseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SharedExpense to update in case it exists.
+     */
+    where: SharedExpenseWhereUniqueInput
+    /**
+     * In case the SharedExpense found by the `where` argument doesn't exist, create a new SharedExpense with this data.
+     */
+    create: XOR<SharedExpenseCreateInput, SharedExpenseUncheckedCreateInput>
+    /**
+     * In case the SharedExpense was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SharedExpenseUpdateInput, SharedExpenseUncheckedUpdateInput>
+  }
+
+  /**
+   * SharedExpense delete
+   */
+  export type SharedExpenseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+    /**
+     * Filter which SharedExpense to delete.
+     */
+    where: SharedExpenseWhereUniqueInput
+  }
+
+  /**
+   * SharedExpense deleteMany
+   */
+  export type SharedExpenseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SharedExpenses to delete
+     */
+    where?: SharedExpenseWhereInput
+  }
+
+  /**
+   * SharedExpense.splits
+   */
+  export type SharedExpense$splitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    where?: SharedExpenseSplitWhereInput
+    orderBy?: SharedExpenseSplitOrderByWithRelationInput | SharedExpenseSplitOrderByWithRelationInput[]
+    cursor?: SharedExpenseSplitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SharedExpenseSplitScalarFieldEnum | SharedExpenseSplitScalarFieldEnum[]
+  }
+
+  /**
+   * SharedExpense without action
+   */
+  export type SharedExpenseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpense
+     */
+    select?: SharedExpenseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SharedExpenseSplit
+   */
+
+  export type AggregateSharedExpenseSplit = {
+    _count: SharedExpenseSplitCountAggregateOutputType | null
+    _avg: SharedExpenseSplitAvgAggregateOutputType | null
+    _sum: SharedExpenseSplitSumAggregateOutputType | null
+    _min: SharedExpenseSplitMinAggregateOutputType | null
+    _max: SharedExpenseSplitMaxAggregateOutputType | null
+  }
+
+  export type SharedExpenseSplitAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type SharedExpenseSplitSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type SharedExpenseSplitMinAggregateOutputType = {
+    id: string | null
+    sharedExpenseId: string | null
+    userId: string | null
+    amount: number | null
+    settled: boolean | null
+    settledAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SharedExpenseSplitMaxAggregateOutputType = {
+    id: string | null
+    sharedExpenseId: string | null
+    userId: string | null
+    amount: number | null
+    settled: boolean | null
+    settledAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SharedExpenseSplitCountAggregateOutputType = {
+    id: number
+    sharedExpenseId: number
+    userId: number
+    amount: number
+    settled: number
+    settledAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SharedExpenseSplitAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type SharedExpenseSplitSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type SharedExpenseSplitMinAggregateInputType = {
+    id?: true
+    sharedExpenseId?: true
+    userId?: true
+    amount?: true
+    settled?: true
+    settledAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SharedExpenseSplitMaxAggregateInputType = {
+    id?: true
+    sharedExpenseId?: true
+    userId?: true
+    amount?: true
+    settled?: true
+    settledAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SharedExpenseSplitCountAggregateInputType = {
+    id?: true
+    sharedExpenseId?: true
+    userId?: true
+    amount?: true
+    settled?: true
+    settledAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SharedExpenseSplitAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SharedExpenseSplit to aggregate.
+     */
+    where?: SharedExpenseSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenseSplits to fetch.
+     */
+    orderBy?: SharedExpenseSplitOrderByWithRelationInput | SharedExpenseSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SharedExpenseSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenseSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenseSplits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SharedExpenseSplits
+    **/
+    _count?: true | SharedExpenseSplitCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SharedExpenseSplitAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SharedExpenseSplitSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SharedExpenseSplitMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SharedExpenseSplitMaxAggregateInputType
+  }
+
+  export type GetSharedExpenseSplitAggregateType<T extends SharedExpenseSplitAggregateArgs> = {
+        [P in keyof T & keyof AggregateSharedExpenseSplit]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSharedExpenseSplit[P]>
+      : GetScalarType<T[P], AggregateSharedExpenseSplit[P]>
+  }
+
+
+
+
+  export type SharedExpenseSplitGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SharedExpenseSplitWhereInput
+    orderBy?: SharedExpenseSplitOrderByWithAggregationInput | SharedExpenseSplitOrderByWithAggregationInput[]
+    by: SharedExpenseSplitScalarFieldEnum[] | SharedExpenseSplitScalarFieldEnum
+    having?: SharedExpenseSplitScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SharedExpenseSplitCountAggregateInputType | true
+    _avg?: SharedExpenseSplitAvgAggregateInputType
+    _sum?: SharedExpenseSplitSumAggregateInputType
+    _min?: SharedExpenseSplitMinAggregateInputType
+    _max?: SharedExpenseSplitMaxAggregateInputType
+  }
+
+  export type SharedExpenseSplitGroupByOutputType = {
+    id: string
+    sharedExpenseId: string
+    userId: string
+    amount: number
+    settled: boolean
+    settledAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SharedExpenseSplitCountAggregateOutputType | null
+    _avg: SharedExpenseSplitAvgAggregateOutputType | null
+    _sum: SharedExpenseSplitSumAggregateOutputType | null
+    _min: SharedExpenseSplitMinAggregateOutputType | null
+    _max: SharedExpenseSplitMaxAggregateOutputType | null
+  }
+
+  type GetSharedExpenseSplitGroupByPayload<T extends SharedExpenseSplitGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SharedExpenseSplitGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SharedExpenseSplitGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SharedExpenseSplitGroupByOutputType[P]>
+            : GetScalarType<T[P], SharedExpenseSplitGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SharedExpenseSplitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedExpenseId?: boolean
+    userId?: boolean
+    amount?: boolean
+    settled?: boolean
+    settledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    sharedExpense?: boolean | SharedExpenseDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sharedExpenseSplit"]>
+
+  export type SharedExpenseSplitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sharedExpenseId?: boolean
+    userId?: boolean
+    amount?: boolean
+    settled?: boolean
+    settledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    sharedExpense?: boolean | SharedExpenseDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sharedExpenseSplit"]>
+
+  export type SharedExpenseSplitSelectScalar = {
+    id?: boolean
+    sharedExpenseId?: boolean
+    userId?: boolean
+    amount?: boolean
+    settled?: boolean
+    settledAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SharedExpenseSplitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedExpense?: boolean | SharedExpenseDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SharedExpenseSplitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sharedExpense?: boolean | SharedExpenseDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SharedExpenseSplitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SharedExpenseSplit"
+    objects: {
+      sharedExpense: Prisma.$SharedExpensePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sharedExpenseId: string
+      userId: string
+      amount: number
+      settled: boolean
+      settledAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["sharedExpenseSplit"]>
+    composites: {}
+  }
+
+  type SharedExpenseSplitGetPayload<S extends boolean | null | undefined | SharedExpenseSplitDefaultArgs> = $Result.GetResult<Prisma.$SharedExpenseSplitPayload, S>
+
+  type SharedExpenseSplitCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SharedExpenseSplitFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SharedExpenseSplitCountAggregateInputType | true
+    }
+
+  export interface SharedExpenseSplitDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SharedExpenseSplit'], meta: { name: 'SharedExpenseSplit' } }
+    /**
+     * Find zero or one SharedExpenseSplit that matches the filter.
+     * @param {SharedExpenseSplitFindUniqueArgs} args - Arguments to find a SharedExpenseSplit
+     * @example
+     * // Get one SharedExpenseSplit
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SharedExpenseSplitFindUniqueArgs>(args: SelectSubset<T, SharedExpenseSplitFindUniqueArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one SharedExpenseSplit that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {SharedExpenseSplitFindUniqueOrThrowArgs} args - Arguments to find a SharedExpenseSplit
+     * @example
+     * // Get one SharedExpenseSplit
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SharedExpenseSplitFindUniqueOrThrowArgs>(args: SelectSubset<T, SharedExpenseSplitFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first SharedExpenseSplit that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseSplitFindFirstArgs} args - Arguments to find a SharedExpenseSplit
+     * @example
+     * // Get one SharedExpenseSplit
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SharedExpenseSplitFindFirstArgs>(args?: SelectSubset<T, SharedExpenseSplitFindFirstArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first SharedExpenseSplit that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseSplitFindFirstOrThrowArgs} args - Arguments to find a SharedExpenseSplit
+     * @example
+     * // Get one SharedExpenseSplit
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SharedExpenseSplitFindFirstOrThrowArgs>(args?: SelectSubset<T, SharedExpenseSplitFindFirstOrThrowArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more SharedExpenseSplits that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseSplitFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SharedExpenseSplits
+     * const sharedExpenseSplits = await prisma.sharedExpenseSplit.findMany()
+     * 
+     * // Get first 10 SharedExpenseSplits
+     * const sharedExpenseSplits = await prisma.sharedExpenseSplit.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sharedExpenseSplitWithIdOnly = await prisma.sharedExpenseSplit.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SharedExpenseSplitFindManyArgs>(args?: SelectSubset<T, SharedExpenseSplitFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a SharedExpenseSplit.
+     * @param {SharedExpenseSplitCreateArgs} args - Arguments to create a SharedExpenseSplit.
+     * @example
+     * // Create one SharedExpenseSplit
+     * const SharedExpenseSplit = await prisma.sharedExpenseSplit.create({
+     *   data: {
+     *     // ... data to create a SharedExpenseSplit
+     *   }
+     * })
+     * 
+     */
+    create<T extends SharedExpenseSplitCreateArgs>(args: SelectSubset<T, SharedExpenseSplitCreateArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many SharedExpenseSplits.
+     * @param {SharedExpenseSplitCreateManyArgs} args - Arguments to create many SharedExpenseSplits.
+     * @example
+     * // Create many SharedExpenseSplits
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SharedExpenseSplitCreateManyArgs>(args?: SelectSubset<T, SharedExpenseSplitCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SharedExpenseSplits and returns the data saved in the database.
+     * @param {SharedExpenseSplitCreateManyAndReturnArgs} args - Arguments to create many SharedExpenseSplits.
+     * @example
+     * // Create many SharedExpenseSplits
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SharedExpenseSplits and only return the `id`
+     * const sharedExpenseSplitWithIdOnly = await prisma.sharedExpenseSplit.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SharedExpenseSplitCreateManyAndReturnArgs>(args?: SelectSubset<T, SharedExpenseSplitCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a SharedExpenseSplit.
+     * @param {SharedExpenseSplitDeleteArgs} args - Arguments to delete one SharedExpenseSplit.
+     * @example
+     * // Delete one SharedExpenseSplit
+     * const SharedExpenseSplit = await prisma.sharedExpenseSplit.delete({
+     *   where: {
+     *     // ... filter to delete one SharedExpenseSplit
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SharedExpenseSplitDeleteArgs>(args: SelectSubset<T, SharedExpenseSplitDeleteArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one SharedExpenseSplit.
+     * @param {SharedExpenseSplitUpdateArgs} args - Arguments to update one SharedExpenseSplit.
+     * @example
+     * // Update one SharedExpenseSplit
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SharedExpenseSplitUpdateArgs>(args: SelectSubset<T, SharedExpenseSplitUpdateArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more SharedExpenseSplits.
+     * @param {SharedExpenseSplitDeleteManyArgs} args - Arguments to filter SharedExpenseSplits to delete.
+     * @example
+     * // Delete a few SharedExpenseSplits
+     * const { count } = await prisma.sharedExpenseSplit.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SharedExpenseSplitDeleteManyArgs>(args?: SelectSubset<T, SharedExpenseSplitDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SharedExpenseSplits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseSplitUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SharedExpenseSplits
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SharedExpenseSplitUpdateManyArgs>(args: SelectSubset<T, SharedExpenseSplitUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SharedExpenseSplit.
+     * @param {SharedExpenseSplitUpsertArgs} args - Arguments to update or create a SharedExpenseSplit.
+     * @example
+     * // Update or create a SharedExpenseSplit
+     * const sharedExpenseSplit = await prisma.sharedExpenseSplit.upsert({
+     *   create: {
+     *     // ... data to create a SharedExpenseSplit
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SharedExpenseSplit we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SharedExpenseSplitUpsertArgs>(args: SelectSubset<T, SharedExpenseSplitUpsertArgs<ExtArgs>>): Prisma__SharedExpenseSplitClient<$Result.GetResult<Prisma.$SharedExpenseSplitPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of SharedExpenseSplits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseSplitCountArgs} args - Arguments to filter SharedExpenseSplits to count.
+     * @example
+     * // Count the number of SharedExpenseSplits
+     * const count = await prisma.sharedExpenseSplit.count({
+     *   where: {
+     *     // ... the filter for the SharedExpenseSplits we want to count
+     *   }
+     * })
+    **/
+    count<T extends SharedExpenseSplitCountArgs>(
+      args?: Subset<T, SharedExpenseSplitCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SharedExpenseSplitCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SharedExpenseSplit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseSplitAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SharedExpenseSplitAggregateArgs>(args: Subset<T, SharedExpenseSplitAggregateArgs>): Prisma.PrismaPromise<GetSharedExpenseSplitAggregateType<T>>
+
+    /**
+     * Group by SharedExpenseSplit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SharedExpenseSplitGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SharedExpenseSplitGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SharedExpenseSplitGroupByArgs['orderBy'] }
+        : { orderBy?: SharedExpenseSplitGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SharedExpenseSplitGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSharedExpenseSplitGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SharedExpenseSplit model
+   */
+  readonly fields: SharedExpenseSplitFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SharedExpenseSplit.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SharedExpenseSplitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sharedExpense<T extends SharedExpenseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SharedExpenseDefaultArgs<ExtArgs>>): Prisma__SharedExpenseClient<$Result.GetResult<Prisma.$SharedExpensePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SharedExpenseSplit model
+   */ 
+  interface SharedExpenseSplitFieldRefs {
+    readonly id: FieldRef<"SharedExpenseSplit", 'String'>
+    readonly sharedExpenseId: FieldRef<"SharedExpenseSplit", 'String'>
+    readonly userId: FieldRef<"SharedExpenseSplit", 'String'>
+    readonly amount: FieldRef<"SharedExpenseSplit", 'Float'>
+    readonly settled: FieldRef<"SharedExpenseSplit", 'Boolean'>
+    readonly settledAt: FieldRef<"SharedExpenseSplit", 'DateTime'>
+    readonly createdAt: FieldRef<"SharedExpenseSplit", 'DateTime'>
+    readonly updatedAt: FieldRef<"SharedExpenseSplit", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SharedExpenseSplit findUnique
+   */
+  export type SharedExpenseSplitFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpenseSplit to fetch.
+     */
+    where: SharedExpenseSplitWhereUniqueInput
+  }
+
+  /**
+   * SharedExpenseSplit findUniqueOrThrow
+   */
+  export type SharedExpenseSplitFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpenseSplit to fetch.
+     */
+    where: SharedExpenseSplitWhereUniqueInput
+  }
+
+  /**
+   * SharedExpenseSplit findFirst
+   */
+  export type SharedExpenseSplitFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpenseSplit to fetch.
+     */
+    where?: SharedExpenseSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenseSplits to fetch.
+     */
+    orderBy?: SharedExpenseSplitOrderByWithRelationInput | SharedExpenseSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SharedExpenseSplits.
+     */
+    cursor?: SharedExpenseSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenseSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenseSplits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SharedExpenseSplits.
+     */
+    distinct?: SharedExpenseSplitScalarFieldEnum | SharedExpenseSplitScalarFieldEnum[]
+  }
+
+  /**
+   * SharedExpenseSplit findFirstOrThrow
+   */
+  export type SharedExpenseSplitFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpenseSplit to fetch.
+     */
+    where?: SharedExpenseSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenseSplits to fetch.
+     */
+    orderBy?: SharedExpenseSplitOrderByWithRelationInput | SharedExpenseSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SharedExpenseSplits.
+     */
+    cursor?: SharedExpenseSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenseSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenseSplits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SharedExpenseSplits.
+     */
+    distinct?: SharedExpenseSplitScalarFieldEnum | SharedExpenseSplitScalarFieldEnum[]
+  }
+
+  /**
+   * SharedExpenseSplit findMany
+   */
+  export type SharedExpenseSplitFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * Filter, which SharedExpenseSplits to fetch.
+     */
+    where?: SharedExpenseSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SharedExpenseSplits to fetch.
+     */
+    orderBy?: SharedExpenseSplitOrderByWithRelationInput | SharedExpenseSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SharedExpenseSplits.
+     */
+    cursor?: SharedExpenseSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SharedExpenseSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SharedExpenseSplits.
+     */
+    skip?: number
+    distinct?: SharedExpenseSplitScalarFieldEnum | SharedExpenseSplitScalarFieldEnum[]
+  }
+
+  /**
+   * SharedExpenseSplit create
+   */
+  export type SharedExpenseSplitCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SharedExpenseSplit.
+     */
+    data: XOR<SharedExpenseSplitCreateInput, SharedExpenseSplitUncheckedCreateInput>
+  }
+
+  /**
+   * SharedExpenseSplit createMany
+   */
+  export type SharedExpenseSplitCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SharedExpenseSplits.
+     */
+    data: SharedExpenseSplitCreateManyInput | SharedExpenseSplitCreateManyInput[]
+  }
+
+  /**
+   * SharedExpenseSplit createManyAndReturn
+   */
+  export type SharedExpenseSplitCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many SharedExpenseSplits.
+     */
+    data: SharedExpenseSplitCreateManyInput | SharedExpenseSplitCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SharedExpenseSplit update
+   */
+  export type SharedExpenseSplitUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SharedExpenseSplit.
+     */
+    data: XOR<SharedExpenseSplitUpdateInput, SharedExpenseSplitUncheckedUpdateInput>
+    /**
+     * Choose, which SharedExpenseSplit to update.
+     */
+    where: SharedExpenseSplitWhereUniqueInput
+  }
+
+  /**
+   * SharedExpenseSplit updateMany
+   */
+  export type SharedExpenseSplitUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SharedExpenseSplits.
+     */
+    data: XOR<SharedExpenseSplitUpdateManyMutationInput, SharedExpenseSplitUncheckedUpdateManyInput>
+    /**
+     * Filter which SharedExpenseSplits to update
+     */
+    where?: SharedExpenseSplitWhereInput
+  }
+
+  /**
+   * SharedExpenseSplit upsert
+   */
+  export type SharedExpenseSplitUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SharedExpenseSplit to update in case it exists.
+     */
+    where: SharedExpenseSplitWhereUniqueInput
+    /**
+     * In case the SharedExpenseSplit found by the `where` argument doesn't exist, create a new SharedExpenseSplit with this data.
+     */
+    create: XOR<SharedExpenseSplitCreateInput, SharedExpenseSplitUncheckedCreateInput>
+    /**
+     * In case the SharedExpenseSplit was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SharedExpenseSplitUpdateInput, SharedExpenseSplitUncheckedUpdateInput>
+  }
+
+  /**
+   * SharedExpenseSplit delete
+   */
+  export type SharedExpenseSplitDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+    /**
+     * Filter which SharedExpenseSplit to delete.
+     */
+    where: SharedExpenseSplitWhereUniqueInput
+  }
+
+  /**
+   * SharedExpenseSplit deleteMany
+   */
+  export type SharedExpenseSplitDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SharedExpenseSplits to delete
+     */
+    where?: SharedExpenseSplitWhereInput
+  }
+
+  /**
+   * SharedExpenseSplit without action
+   */
+  export type SharedExpenseSplitDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SharedExpenseSplit
+     */
+    select?: SharedExpenseSplitSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SharedExpenseSplitInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14364,6 +16691,36 @@ export namespace Prisma {
   export type AIChatHistoryScalarFieldEnum = (typeof AIChatHistoryScalarFieldEnum)[keyof typeof AIChatHistoryScalarFieldEnum]
 
 
+  export const SharedExpenseScalarFieldEnum: {
+    id: 'id',
+    description: 'description',
+    amount: 'amount',
+    category: 'category',
+    groupName: 'groupName',
+    paidById: 'paidById',
+    settled: 'settled',
+    settledAt: 'settledAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SharedExpenseScalarFieldEnum = (typeof SharedExpenseScalarFieldEnum)[keyof typeof SharedExpenseScalarFieldEnum]
+
+
+  export const SharedExpenseSplitScalarFieldEnum: {
+    id: 'id',
+    sharedExpenseId: 'sharedExpenseId',
+    userId: 'userId',
+    amount: 'amount',
+    settled: 'settled',
+    settledAt: 'settledAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SharedExpenseSplitScalarFieldEnum = (typeof SharedExpenseSplitScalarFieldEnum)[keyof typeof SharedExpenseSplitScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -14448,6 +16805,8 @@ export namespace Prisma {
     investments?: InvestmentListRelationFilter
     quests?: JuniorQuestListRelationFilter
     chatHistories?: AIChatHistoryListRelationFilter
+    expensesPaid?: SharedExpenseListRelationFilter
+    expenseSplits?: SharedExpenseSplitListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14472,6 +16831,8 @@ export namespace Prisma {
     investments?: InvestmentOrderByRelationAggregateInput
     quests?: JuniorQuestOrderByRelationAggregateInput
     chatHistories?: AIChatHistoryOrderByRelationAggregateInput
+    expensesPaid?: SharedExpenseOrderByRelationAggregateInput
+    expenseSplits?: SharedExpenseSplitOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14499,6 +16860,8 @@ export namespace Prisma {
     investments?: InvestmentListRelationFilter
     quests?: JuniorQuestListRelationFilter
     chatHistories?: AIChatHistoryListRelationFilter
+    expensesPaid?: SharedExpenseListRelationFilter
+    expenseSplits?: SharedExpenseSplitListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -15394,6 +17757,166 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"AIChatHistory"> | Date | string
   }
 
+  export type SharedExpenseWhereInput = {
+    AND?: SharedExpenseWhereInput | SharedExpenseWhereInput[]
+    OR?: SharedExpenseWhereInput[]
+    NOT?: SharedExpenseWhereInput | SharedExpenseWhereInput[]
+    id?: StringFilter<"SharedExpense"> | string
+    description?: StringFilter<"SharedExpense"> | string
+    amount?: FloatFilter<"SharedExpense"> | number
+    category?: StringFilter<"SharedExpense"> | string
+    groupName?: StringFilter<"SharedExpense"> | string
+    paidById?: StringFilter<"SharedExpense"> | string
+    settled?: BoolFilter<"SharedExpense"> | boolean
+    settledAt?: DateTimeNullableFilter<"SharedExpense"> | Date | string | null
+    createdAt?: DateTimeFilter<"SharedExpense"> | Date | string
+    updatedAt?: DateTimeFilter<"SharedExpense"> | Date | string
+    paidBy?: XOR<UserRelationFilter, UserWhereInput>
+    splits?: SharedExpenseSplitListRelationFilter
+  }
+
+  export type SharedExpenseOrderByWithRelationInput = {
+    id?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    groupName?: SortOrder
+    paidById?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    paidBy?: UserOrderByWithRelationInput
+    splits?: SharedExpenseSplitOrderByRelationAggregateInput
+  }
+
+  export type SharedExpenseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SharedExpenseWhereInput | SharedExpenseWhereInput[]
+    OR?: SharedExpenseWhereInput[]
+    NOT?: SharedExpenseWhereInput | SharedExpenseWhereInput[]
+    description?: StringFilter<"SharedExpense"> | string
+    amount?: FloatFilter<"SharedExpense"> | number
+    category?: StringFilter<"SharedExpense"> | string
+    groupName?: StringFilter<"SharedExpense"> | string
+    paidById?: StringFilter<"SharedExpense"> | string
+    settled?: BoolFilter<"SharedExpense"> | boolean
+    settledAt?: DateTimeNullableFilter<"SharedExpense"> | Date | string | null
+    createdAt?: DateTimeFilter<"SharedExpense"> | Date | string
+    updatedAt?: DateTimeFilter<"SharedExpense"> | Date | string
+    paidBy?: XOR<UserRelationFilter, UserWhereInput>
+    splits?: SharedExpenseSplitListRelationFilter
+  }, "id">
+
+  export type SharedExpenseOrderByWithAggregationInput = {
+    id?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    groupName?: SortOrder
+    paidById?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SharedExpenseCountOrderByAggregateInput
+    _avg?: SharedExpenseAvgOrderByAggregateInput
+    _max?: SharedExpenseMaxOrderByAggregateInput
+    _min?: SharedExpenseMinOrderByAggregateInput
+    _sum?: SharedExpenseSumOrderByAggregateInput
+  }
+
+  export type SharedExpenseScalarWhereWithAggregatesInput = {
+    AND?: SharedExpenseScalarWhereWithAggregatesInput | SharedExpenseScalarWhereWithAggregatesInput[]
+    OR?: SharedExpenseScalarWhereWithAggregatesInput[]
+    NOT?: SharedExpenseScalarWhereWithAggregatesInput | SharedExpenseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SharedExpense"> | string
+    description?: StringWithAggregatesFilter<"SharedExpense"> | string
+    amount?: FloatWithAggregatesFilter<"SharedExpense"> | number
+    category?: StringWithAggregatesFilter<"SharedExpense"> | string
+    groupName?: StringWithAggregatesFilter<"SharedExpense"> | string
+    paidById?: StringWithAggregatesFilter<"SharedExpense"> | string
+    settled?: BoolWithAggregatesFilter<"SharedExpense"> | boolean
+    settledAt?: DateTimeNullableWithAggregatesFilter<"SharedExpense"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"SharedExpense"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SharedExpense"> | Date | string
+  }
+
+  export type SharedExpenseSplitWhereInput = {
+    AND?: SharedExpenseSplitWhereInput | SharedExpenseSplitWhereInput[]
+    OR?: SharedExpenseSplitWhereInput[]
+    NOT?: SharedExpenseSplitWhereInput | SharedExpenseSplitWhereInput[]
+    id?: StringFilter<"SharedExpenseSplit"> | string
+    sharedExpenseId?: StringFilter<"SharedExpenseSplit"> | string
+    userId?: StringFilter<"SharedExpenseSplit"> | string
+    amount?: FloatFilter<"SharedExpenseSplit"> | number
+    settled?: BoolFilter<"SharedExpenseSplit"> | boolean
+    settledAt?: DateTimeNullableFilter<"SharedExpenseSplit"> | Date | string | null
+    createdAt?: DateTimeFilter<"SharedExpenseSplit"> | Date | string
+    updatedAt?: DateTimeFilter<"SharedExpenseSplit"> | Date | string
+    sharedExpense?: XOR<SharedExpenseRelationFilter, SharedExpenseWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type SharedExpenseSplitOrderByWithRelationInput = {
+    id?: SortOrder
+    sharedExpenseId?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    sharedExpense?: SharedExpenseOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SharedExpenseSplitWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SharedExpenseSplitWhereInput | SharedExpenseSplitWhereInput[]
+    OR?: SharedExpenseSplitWhereInput[]
+    NOT?: SharedExpenseSplitWhereInput | SharedExpenseSplitWhereInput[]
+    sharedExpenseId?: StringFilter<"SharedExpenseSplit"> | string
+    userId?: StringFilter<"SharedExpenseSplit"> | string
+    amount?: FloatFilter<"SharedExpenseSplit"> | number
+    settled?: BoolFilter<"SharedExpenseSplit"> | boolean
+    settledAt?: DateTimeNullableFilter<"SharedExpenseSplit"> | Date | string | null
+    createdAt?: DateTimeFilter<"SharedExpenseSplit"> | Date | string
+    updatedAt?: DateTimeFilter<"SharedExpenseSplit"> | Date | string
+    sharedExpense?: XOR<SharedExpenseRelationFilter, SharedExpenseWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type SharedExpenseSplitOrderByWithAggregationInput = {
+    id?: SortOrder
+    sharedExpenseId?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SharedExpenseSplitCountOrderByAggregateInput
+    _avg?: SharedExpenseSplitAvgOrderByAggregateInput
+    _max?: SharedExpenseSplitMaxOrderByAggregateInput
+    _min?: SharedExpenseSplitMinOrderByAggregateInput
+    _sum?: SharedExpenseSplitSumOrderByAggregateInput
+  }
+
+  export type SharedExpenseSplitScalarWhereWithAggregatesInput = {
+    AND?: SharedExpenseSplitScalarWhereWithAggregatesInput | SharedExpenseSplitScalarWhereWithAggregatesInput[]
+    OR?: SharedExpenseSplitScalarWhereWithAggregatesInput[]
+    NOT?: SharedExpenseSplitScalarWhereWithAggregatesInput | SharedExpenseSplitScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SharedExpenseSplit"> | string
+    sharedExpenseId?: StringWithAggregatesFilter<"SharedExpenseSplit"> | string
+    userId?: StringWithAggregatesFilter<"SharedExpenseSplit"> | string
+    amount?: FloatWithAggregatesFilter<"SharedExpenseSplit"> | number
+    settled?: BoolWithAggregatesFilter<"SharedExpenseSplit"> | boolean
+    settledAt?: DateTimeNullableWithAggregatesFilter<"SharedExpenseSplit"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"SharedExpenseSplit"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SharedExpenseSplit"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -15416,6 +17939,8 @@ export namespace Prisma {
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -15440,6 +17965,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -15464,6 +17991,8 @@ export namespace Prisma {
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -15488,6 +18017,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -16478,6 +19009,175 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SharedExpenseCreateInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    paidBy: UserCreateNestedOneWithoutExpensesPaidInput
+    splits?: SharedExpenseSplitCreateNestedManyWithoutSharedExpenseInput
+  }
+
+  export type SharedExpenseUncheckedCreateInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    paidById: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    splits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutSharedExpenseInput
+  }
+
+  export type SharedExpenseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paidBy?: UserUpdateOneRequiredWithoutExpensesPaidNestedInput
+    splits?: SharedExpenseSplitUpdateManyWithoutSharedExpenseNestedInput
+  }
+
+  export type SharedExpenseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    paidById?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    splits?: SharedExpenseSplitUncheckedUpdateManyWithoutSharedExpenseNestedInput
+  }
+
+  export type SharedExpenseCreateManyInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    paidById: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    paidById?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseSplitCreateInput = {
+    id?: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sharedExpense: SharedExpenseCreateNestedOneWithoutSplitsInput
+    user: UserCreateNestedOneWithoutExpenseSplitsInput
+  }
+
+  export type SharedExpenseSplitUncheckedCreateInput = {
+    id?: string
+    sharedExpenseId: string
+    userId: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseSplitUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sharedExpense?: SharedExpenseUpdateOneRequiredWithoutSplitsNestedInput
+    user?: UserUpdateOneRequiredWithoutExpenseSplitsNestedInput
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedExpenseId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseSplitCreateManyInput = {
+    id?: string
+    sharedExpenseId: string
+    userId: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseSplitUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedExpenseId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -16573,6 +19273,18 @@ export namespace Prisma {
     none?: AIChatHistoryWhereInput
   }
 
+  export type SharedExpenseListRelationFilter = {
+    every?: SharedExpenseWhereInput
+    some?: SharedExpenseWhereInput
+    none?: SharedExpenseWhereInput
+  }
+
+  export type SharedExpenseSplitListRelationFilter = {
+    every?: SharedExpenseSplitWhereInput
+    some?: SharedExpenseSplitWhereInput
+    none?: SharedExpenseSplitWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -16611,6 +19323,14 @@ export namespace Prisma {
   }
 
   export type AIChatHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SharedExpenseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SharedExpenseSplitOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17304,6 +20024,124 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type SharedExpenseCountOrderByAggregateInput = {
+    id?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    groupName?: SortOrder
+    paidById?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SharedExpenseAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type SharedExpenseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    groupName?: SortOrder
+    paidById?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SharedExpenseMinOrderByAggregateInput = {
+    id?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    category?: SortOrder
+    groupName?: SortOrder
+    paidById?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SharedExpenseSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type SharedExpenseRelationFilter = {
+    is?: SharedExpenseWhereInput
+    isNot?: SharedExpenseWhereInput
+  }
+
+  export type SharedExpenseSplitCountOrderByAggregateInput = {
+    id?: SortOrder
+    sharedExpenseId?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SharedExpenseSplitAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type SharedExpenseSplitMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sharedExpenseId?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SharedExpenseSplitMinOrderByAggregateInput = {
+    id?: SortOrder
+    sharedExpenseId?: SortOrder
+    userId?: SortOrder
+    amount?: SortOrder
+    settled?: SortOrder
+    settledAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SharedExpenseSplitSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -17367,6 +20205,20 @@ export namespace Prisma {
     connect?: AIChatHistoryWhereUniqueInput | AIChatHistoryWhereUniqueInput[]
   }
 
+  export type SharedExpenseCreateNestedManyWithoutPaidByInput = {
+    create?: XOR<SharedExpenseCreateWithoutPaidByInput, SharedExpenseUncheckedCreateWithoutPaidByInput> | SharedExpenseCreateWithoutPaidByInput[] | SharedExpenseUncheckedCreateWithoutPaidByInput[]
+    connectOrCreate?: SharedExpenseCreateOrConnectWithoutPaidByInput | SharedExpenseCreateOrConnectWithoutPaidByInput[]
+    createMany?: SharedExpenseCreateManyPaidByInputEnvelope
+    connect?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+  }
+
+  export type SharedExpenseSplitCreateNestedManyWithoutUserInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutUserInput, SharedExpenseSplitUncheckedCreateWithoutUserInput> | SharedExpenseSplitCreateWithoutUserInput[] | SharedExpenseSplitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutUserInput | SharedExpenseSplitCreateOrConnectWithoutUserInput[]
+    createMany?: SharedExpenseSplitCreateManyUserInputEnvelope
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -17428,6 +20280,20 @@ export namespace Prisma {
     connectOrCreate?: AIChatHistoryCreateOrConnectWithoutUserInput | AIChatHistoryCreateOrConnectWithoutUserInput[]
     createMany?: AIChatHistoryCreateManyUserInputEnvelope
     connect?: AIChatHistoryWhereUniqueInput | AIChatHistoryWhereUniqueInput[]
+  }
+
+  export type SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput = {
+    create?: XOR<SharedExpenseCreateWithoutPaidByInput, SharedExpenseUncheckedCreateWithoutPaidByInput> | SharedExpenseCreateWithoutPaidByInput[] | SharedExpenseUncheckedCreateWithoutPaidByInput[]
+    connectOrCreate?: SharedExpenseCreateOrConnectWithoutPaidByInput | SharedExpenseCreateOrConnectWithoutPaidByInput[]
+    createMany?: SharedExpenseCreateManyPaidByInputEnvelope
+    connect?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+  }
+
+  export type SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutUserInput, SharedExpenseSplitUncheckedCreateWithoutUserInput> | SharedExpenseSplitCreateWithoutUserInput[] | SharedExpenseSplitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutUserInput | SharedExpenseSplitCreateOrConnectWithoutUserInput[]
+    createMany?: SharedExpenseSplitCreateManyUserInputEnvelope
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -17576,6 +20442,34 @@ export namespace Prisma {
     deleteMany?: AIChatHistoryScalarWhereInput | AIChatHistoryScalarWhereInput[]
   }
 
+  export type SharedExpenseUpdateManyWithoutPaidByNestedInput = {
+    create?: XOR<SharedExpenseCreateWithoutPaidByInput, SharedExpenseUncheckedCreateWithoutPaidByInput> | SharedExpenseCreateWithoutPaidByInput[] | SharedExpenseUncheckedCreateWithoutPaidByInput[]
+    connectOrCreate?: SharedExpenseCreateOrConnectWithoutPaidByInput | SharedExpenseCreateOrConnectWithoutPaidByInput[]
+    upsert?: SharedExpenseUpsertWithWhereUniqueWithoutPaidByInput | SharedExpenseUpsertWithWhereUniqueWithoutPaidByInput[]
+    createMany?: SharedExpenseCreateManyPaidByInputEnvelope
+    set?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    disconnect?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    delete?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    connect?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    update?: SharedExpenseUpdateWithWhereUniqueWithoutPaidByInput | SharedExpenseUpdateWithWhereUniqueWithoutPaidByInput[]
+    updateMany?: SharedExpenseUpdateManyWithWhereWithoutPaidByInput | SharedExpenseUpdateManyWithWhereWithoutPaidByInput[]
+    deleteMany?: SharedExpenseScalarWhereInput | SharedExpenseScalarWhereInput[]
+  }
+
+  export type SharedExpenseSplitUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutUserInput, SharedExpenseSplitUncheckedCreateWithoutUserInput> | SharedExpenseSplitCreateWithoutUserInput[] | SharedExpenseSplitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutUserInput | SharedExpenseSplitCreateOrConnectWithoutUserInput[]
+    upsert?: SharedExpenseSplitUpsertWithWhereUniqueWithoutUserInput | SharedExpenseSplitUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SharedExpenseSplitCreateManyUserInputEnvelope
+    set?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    disconnect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    delete?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    update?: SharedExpenseSplitUpdateWithWhereUniqueWithoutUserInput | SharedExpenseSplitUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SharedExpenseSplitUpdateManyWithWhereWithoutUserInput | SharedExpenseSplitUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SharedExpenseSplitScalarWhereInput | SharedExpenseSplitScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -17700,6 +20594,34 @@ export namespace Prisma {
     update?: AIChatHistoryUpdateWithWhereUniqueWithoutUserInput | AIChatHistoryUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AIChatHistoryUpdateManyWithWhereWithoutUserInput | AIChatHistoryUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AIChatHistoryScalarWhereInput | AIChatHistoryScalarWhereInput[]
+  }
+
+  export type SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput = {
+    create?: XOR<SharedExpenseCreateWithoutPaidByInput, SharedExpenseUncheckedCreateWithoutPaidByInput> | SharedExpenseCreateWithoutPaidByInput[] | SharedExpenseUncheckedCreateWithoutPaidByInput[]
+    connectOrCreate?: SharedExpenseCreateOrConnectWithoutPaidByInput | SharedExpenseCreateOrConnectWithoutPaidByInput[]
+    upsert?: SharedExpenseUpsertWithWhereUniqueWithoutPaidByInput | SharedExpenseUpsertWithWhereUniqueWithoutPaidByInput[]
+    createMany?: SharedExpenseCreateManyPaidByInputEnvelope
+    set?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    disconnect?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    delete?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    connect?: SharedExpenseWhereUniqueInput | SharedExpenseWhereUniqueInput[]
+    update?: SharedExpenseUpdateWithWhereUniqueWithoutPaidByInput | SharedExpenseUpdateWithWhereUniqueWithoutPaidByInput[]
+    updateMany?: SharedExpenseUpdateManyWithWhereWithoutPaidByInput | SharedExpenseUpdateManyWithWhereWithoutPaidByInput[]
+    deleteMany?: SharedExpenseScalarWhereInput | SharedExpenseScalarWhereInput[]
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutUserInput, SharedExpenseSplitUncheckedCreateWithoutUserInput> | SharedExpenseSplitCreateWithoutUserInput[] | SharedExpenseSplitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutUserInput | SharedExpenseSplitCreateOrConnectWithoutUserInput[]
+    upsert?: SharedExpenseSplitUpsertWithWhereUniqueWithoutUserInput | SharedExpenseSplitUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SharedExpenseSplitCreateManyUserInputEnvelope
+    set?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    disconnect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    delete?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    update?: SharedExpenseSplitUpdateWithWhereUniqueWithoutUserInput | SharedExpenseSplitUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SharedExpenseSplitUpdateManyWithWhereWithoutUserInput | SharedExpenseSplitUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SharedExpenseSplitScalarWhereInput | SharedExpenseSplitScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -17846,6 +20768,94 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutChatHistoriesInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChatHistoriesInput, UserUpdateWithoutChatHistoriesInput>, UserUncheckedUpdateWithoutChatHistoriesInput>
+  }
+
+  export type UserCreateNestedOneWithoutExpensesPaidInput = {
+    create?: XOR<UserCreateWithoutExpensesPaidInput, UserUncheckedCreateWithoutExpensesPaidInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExpensesPaidInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SharedExpenseSplitCreateNestedManyWithoutSharedExpenseInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput> | SharedExpenseSplitCreateWithoutSharedExpenseInput[] | SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput | SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput[]
+    createMany?: SharedExpenseSplitCreateManySharedExpenseInputEnvelope
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+  }
+
+  export type SharedExpenseSplitUncheckedCreateNestedManyWithoutSharedExpenseInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput> | SharedExpenseSplitCreateWithoutSharedExpenseInput[] | SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput | SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput[]
+    createMany?: SharedExpenseSplitCreateManySharedExpenseInputEnvelope
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutExpensesPaidNestedInput = {
+    create?: XOR<UserCreateWithoutExpensesPaidInput, UserUncheckedCreateWithoutExpensesPaidInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExpensesPaidInput
+    upsert?: UserUpsertWithoutExpensesPaidInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutExpensesPaidInput, UserUpdateWithoutExpensesPaidInput>, UserUncheckedUpdateWithoutExpensesPaidInput>
+  }
+
+  export type SharedExpenseSplitUpdateManyWithoutSharedExpenseNestedInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput> | SharedExpenseSplitCreateWithoutSharedExpenseInput[] | SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput | SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput[]
+    upsert?: SharedExpenseSplitUpsertWithWhereUniqueWithoutSharedExpenseInput | SharedExpenseSplitUpsertWithWhereUniqueWithoutSharedExpenseInput[]
+    createMany?: SharedExpenseSplitCreateManySharedExpenseInputEnvelope
+    set?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    disconnect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    delete?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    update?: SharedExpenseSplitUpdateWithWhereUniqueWithoutSharedExpenseInput | SharedExpenseSplitUpdateWithWhereUniqueWithoutSharedExpenseInput[]
+    updateMany?: SharedExpenseSplitUpdateManyWithWhereWithoutSharedExpenseInput | SharedExpenseSplitUpdateManyWithWhereWithoutSharedExpenseInput[]
+    deleteMany?: SharedExpenseSplitScalarWhereInput | SharedExpenseSplitScalarWhereInput[]
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateManyWithoutSharedExpenseNestedInput = {
+    create?: XOR<SharedExpenseSplitCreateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput> | SharedExpenseSplitCreateWithoutSharedExpenseInput[] | SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput[]
+    connectOrCreate?: SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput | SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput[]
+    upsert?: SharedExpenseSplitUpsertWithWhereUniqueWithoutSharedExpenseInput | SharedExpenseSplitUpsertWithWhereUniqueWithoutSharedExpenseInput[]
+    createMany?: SharedExpenseSplitCreateManySharedExpenseInputEnvelope
+    set?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    disconnect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    delete?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    connect?: SharedExpenseSplitWhereUniqueInput | SharedExpenseSplitWhereUniqueInput[]
+    update?: SharedExpenseSplitUpdateWithWhereUniqueWithoutSharedExpenseInput | SharedExpenseSplitUpdateWithWhereUniqueWithoutSharedExpenseInput[]
+    updateMany?: SharedExpenseSplitUpdateManyWithWhereWithoutSharedExpenseInput | SharedExpenseSplitUpdateManyWithWhereWithoutSharedExpenseInput[]
+    deleteMany?: SharedExpenseSplitScalarWhereInput | SharedExpenseSplitScalarWhereInput[]
+  }
+
+  export type SharedExpenseCreateNestedOneWithoutSplitsInput = {
+    create?: XOR<SharedExpenseCreateWithoutSplitsInput, SharedExpenseUncheckedCreateWithoutSplitsInput>
+    connectOrCreate?: SharedExpenseCreateOrConnectWithoutSplitsInput
+    connect?: SharedExpenseWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutExpenseSplitsInput = {
+    create?: XOR<UserCreateWithoutExpenseSplitsInput, UserUncheckedCreateWithoutExpenseSplitsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExpenseSplitsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SharedExpenseUpdateOneRequiredWithoutSplitsNestedInput = {
+    create?: XOR<SharedExpenseCreateWithoutSplitsInput, SharedExpenseUncheckedCreateWithoutSplitsInput>
+    connectOrCreate?: SharedExpenseCreateOrConnectWithoutSplitsInput
+    upsert?: SharedExpenseUpsertWithoutSplitsInput
+    connect?: SharedExpenseWhereUniqueInput
+    update?: XOR<XOR<SharedExpenseUpdateToOneWithWhereWithoutSplitsInput, SharedExpenseUpdateWithoutSplitsInput>, SharedExpenseUncheckedUpdateWithoutSplitsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutExpenseSplitsNestedInput = {
+    create?: XOR<UserCreateWithoutExpenseSplitsInput, UserUncheckedCreateWithoutExpenseSplitsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExpenseSplitsInput
+    upsert?: UserUpsertWithoutExpenseSplitsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutExpenseSplitsInput, UserUpdateWithoutExpenseSplitsInput>, UserUncheckedUpdateWithoutExpenseSplitsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -18038,6 +21048,31 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -18335,6 +21370,70 @@ export namespace Prisma {
     data: AIChatHistoryCreateManyUserInput | AIChatHistoryCreateManyUserInput[]
   }
 
+  export type SharedExpenseCreateWithoutPaidByInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    splits?: SharedExpenseSplitCreateNestedManyWithoutSharedExpenseInput
+  }
+
+  export type SharedExpenseUncheckedCreateWithoutPaidByInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    splits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutSharedExpenseInput
+  }
+
+  export type SharedExpenseCreateOrConnectWithoutPaidByInput = {
+    where: SharedExpenseWhereUniqueInput
+    create: XOR<SharedExpenseCreateWithoutPaidByInput, SharedExpenseUncheckedCreateWithoutPaidByInput>
+  }
+
+  export type SharedExpenseCreateManyPaidByInputEnvelope = {
+    data: SharedExpenseCreateManyPaidByInput | SharedExpenseCreateManyPaidByInput[]
+  }
+
+  export type SharedExpenseSplitCreateWithoutUserInput = {
+    id?: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sharedExpense: SharedExpenseCreateNestedOneWithoutSplitsInput
+  }
+
+  export type SharedExpenseSplitUncheckedCreateWithoutUserInput = {
+    id?: string
+    sharedExpenseId: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseSplitCreateOrConnectWithoutUserInput = {
+    where: SharedExpenseSplitWhereUniqueInput
+    create: XOR<SharedExpenseSplitCreateWithoutUserInput, SharedExpenseSplitUncheckedCreateWithoutUserInput>
+  }
+
+  export type SharedExpenseSplitCreateManyUserInputEnvelope = {
+    data: SharedExpenseSplitCreateManyUserInput | SharedExpenseSplitCreateManyUserInput[]
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -18622,6 +21721,68 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"AIChatHistory"> | Date | string
   }
 
+  export type SharedExpenseUpsertWithWhereUniqueWithoutPaidByInput = {
+    where: SharedExpenseWhereUniqueInput
+    update: XOR<SharedExpenseUpdateWithoutPaidByInput, SharedExpenseUncheckedUpdateWithoutPaidByInput>
+    create: XOR<SharedExpenseCreateWithoutPaidByInput, SharedExpenseUncheckedCreateWithoutPaidByInput>
+  }
+
+  export type SharedExpenseUpdateWithWhereUniqueWithoutPaidByInput = {
+    where: SharedExpenseWhereUniqueInput
+    data: XOR<SharedExpenseUpdateWithoutPaidByInput, SharedExpenseUncheckedUpdateWithoutPaidByInput>
+  }
+
+  export type SharedExpenseUpdateManyWithWhereWithoutPaidByInput = {
+    where: SharedExpenseScalarWhereInput
+    data: XOR<SharedExpenseUpdateManyMutationInput, SharedExpenseUncheckedUpdateManyWithoutPaidByInput>
+  }
+
+  export type SharedExpenseScalarWhereInput = {
+    AND?: SharedExpenseScalarWhereInput | SharedExpenseScalarWhereInput[]
+    OR?: SharedExpenseScalarWhereInput[]
+    NOT?: SharedExpenseScalarWhereInput | SharedExpenseScalarWhereInput[]
+    id?: StringFilter<"SharedExpense"> | string
+    description?: StringFilter<"SharedExpense"> | string
+    amount?: FloatFilter<"SharedExpense"> | number
+    category?: StringFilter<"SharedExpense"> | string
+    groupName?: StringFilter<"SharedExpense"> | string
+    paidById?: StringFilter<"SharedExpense"> | string
+    settled?: BoolFilter<"SharedExpense"> | boolean
+    settledAt?: DateTimeNullableFilter<"SharedExpense"> | Date | string | null
+    createdAt?: DateTimeFilter<"SharedExpense"> | Date | string
+    updatedAt?: DateTimeFilter<"SharedExpense"> | Date | string
+  }
+
+  export type SharedExpenseSplitUpsertWithWhereUniqueWithoutUserInput = {
+    where: SharedExpenseSplitWhereUniqueInput
+    update: XOR<SharedExpenseSplitUpdateWithoutUserInput, SharedExpenseSplitUncheckedUpdateWithoutUserInput>
+    create: XOR<SharedExpenseSplitCreateWithoutUserInput, SharedExpenseSplitUncheckedCreateWithoutUserInput>
+  }
+
+  export type SharedExpenseSplitUpdateWithWhereUniqueWithoutUserInput = {
+    where: SharedExpenseSplitWhereUniqueInput
+    data: XOR<SharedExpenseSplitUpdateWithoutUserInput, SharedExpenseSplitUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SharedExpenseSplitUpdateManyWithWhereWithoutUserInput = {
+    where: SharedExpenseSplitScalarWhereInput
+    data: XOR<SharedExpenseSplitUpdateManyMutationInput, SharedExpenseSplitUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SharedExpenseSplitScalarWhereInput = {
+    AND?: SharedExpenseSplitScalarWhereInput | SharedExpenseSplitScalarWhereInput[]
+    OR?: SharedExpenseSplitScalarWhereInput[]
+    NOT?: SharedExpenseSplitScalarWhereInput | SharedExpenseSplitScalarWhereInput[]
+    id?: StringFilter<"SharedExpenseSplit"> | string
+    sharedExpenseId?: StringFilter<"SharedExpenseSplit"> | string
+    userId?: StringFilter<"SharedExpenseSplit"> | string
+    amount?: FloatFilter<"SharedExpenseSplit"> | number
+    settled?: BoolFilter<"SharedExpenseSplit"> | boolean
+    settledAt?: DateTimeNullableFilter<"SharedExpenseSplit"> | Date | string | null
+    createdAt?: DateTimeFilter<"SharedExpenseSplit"> | Date | string
+    updatedAt?: DateTimeFilter<"SharedExpenseSplit"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     email: string
@@ -18643,6 +21804,8 @@ export namespace Prisma {
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -18666,6 +21829,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -18705,6 +21870,8 @@ export namespace Prisma {
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -18728,6 +21895,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTransactionsInput = {
@@ -18751,6 +21920,8 @@ export namespace Prisma {
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTransactionsInput = {
@@ -18774,6 +21945,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTransactionsInput = {
@@ -18813,6 +21986,8 @@ export namespace Prisma {
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransactionsInput = {
@@ -18836,6 +22011,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBudgetsInput = {
@@ -18859,6 +22036,8 @@ export namespace Prisma {
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBudgetsInput = {
@@ -18882,6 +22061,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBudgetsInput = {
@@ -18921,6 +22102,8 @@ export namespace Prisma {
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBudgetsInput = {
@@ -18944,6 +22127,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGoalsInput = {
@@ -18967,6 +22152,8 @@ export namespace Prisma {
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGoalsInput = {
@@ -18990,6 +22177,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGoalsInput = {
@@ -19029,6 +22218,8 @@ export namespace Prisma {
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGoalsInput = {
@@ -19052,6 +22243,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBillsInput = {
@@ -19075,6 +22268,8 @@ export namespace Prisma {
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBillsInput = {
@@ -19098,6 +22293,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBillsInput = {
@@ -19137,6 +22334,8 @@ export namespace Prisma {
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBillsInput = {
@@ -19160,6 +22359,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutLoansInput = {
@@ -19183,6 +22384,8 @@ export namespace Prisma {
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLoansInput = {
@@ -19206,6 +22409,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLoansInput = {
@@ -19245,6 +22450,8 @@ export namespace Prisma {
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLoansInput = {
@@ -19268,6 +22475,8 @@ export namespace Prisma {
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutInvestmentsInput = {
@@ -19291,6 +22500,8 @@ export namespace Prisma {
     loans?: LoanCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvestmentsInput = {
@@ -19314,6 +22525,8 @@ export namespace Prisma {
     loans?: LoanUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvestmentsInput = {
@@ -19353,6 +22566,8 @@ export namespace Prisma {
     loans?: LoanUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvestmentsInput = {
@@ -19376,6 +22591,8 @@ export namespace Prisma {
     loans?: LoanUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutQuestsInput = {
@@ -19399,6 +22616,8 @@ export namespace Prisma {
     loans?: LoanCreateNestedManyWithoutUserInput
     investments?: InvestmentCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutQuestsInput = {
@@ -19422,6 +22641,8 @@ export namespace Prisma {
     loans?: LoanUncheckedCreateNestedManyWithoutUserInput
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutQuestsInput = {
@@ -19461,6 +22682,8 @@ export namespace Prisma {
     loans?: LoanUpdateManyWithoutUserNestedInput
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutQuestsInput = {
@@ -19484,6 +22707,8 @@ export namespace Prisma {
     loans?: LoanUncheckedUpdateManyWithoutUserNestedInput
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutChatHistoriesInput = {
@@ -19507,6 +22732,8 @@ export namespace Prisma {
     loans?: LoanCreateNestedManyWithoutUserInput
     investments?: InvestmentCreateNestedManyWithoutUserInput
     quests?: JuniorQuestCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChatHistoriesInput = {
@@ -19530,6 +22757,8 @@ export namespace Prisma {
     loans?: LoanUncheckedCreateNestedManyWithoutUserInput
     investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
     quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChatHistoriesInput = {
@@ -19569,6 +22798,8 @@ export namespace Prisma {
     loans?: LoanUpdateManyWithoutUserNestedInput
     investments?: InvestmentUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChatHistoriesInput = {
@@ -19592,6 +22823,353 @@ export namespace Prisma {
     loans?: LoanUncheckedUpdateManyWithoutUserNestedInput
     investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
     quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutExpensesPaidInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: string
+    profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    budgets?: BudgetCreateNestedManyWithoutUserInput
+    goals?: GoalCreateNestedManyWithoutUserInput
+    bills?: BillCreateNestedManyWithoutUserInput
+    loans?: LoanCreateNestedManyWithoutUserInput
+    investments?: InvestmentCreateNestedManyWithoutUserInput
+    quests?: JuniorQuestCreateNestedManyWithoutUserInput
+    chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expenseSplits?: SharedExpenseSplitCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutExpensesPaidInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: string
+    profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutUserInput
+    goals?: GoalUncheckedCreateNestedManyWithoutUserInput
+    bills?: BillUncheckedCreateNestedManyWithoutUserInput
+    loans?: LoanUncheckedCreateNestedManyWithoutUserInput
+    investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
+    quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
+    chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expenseSplits?: SharedExpenseSplitUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutExpensesPaidInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutExpensesPaidInput, UserUncheckedCreateWithoutExpensesPaidInput>
+  }
+
+  export type SharedExpenseSplitCreateWithoutSharedExpenseInput = {
+    id?: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutExpenseSplitsInput
+  }
+
+  export type SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput = {
+    id?: string
+    userId: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseSplitCreateOrConnectWithoutSharedExpenseInput = {
+    where: SharedExpenseSplitWhereUniqueInput
+    create: XOR<SharedExpenseSplitCreateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput>
+  }
+
+  export type SharedExpenseSplitCreateManySharedExpenseInputEnvelope = {
+    data: SharedExpenseSplitCreateManySharedExpenseInput | SharedExpenseSplitCreateManySharedExpenseInput[]
+  }
+
+  export type UserUpsertWithoutExpensesPaidInput = {
+    update: XOR<UserUpdateWithoutExpensesPaidInput, UserUncheckedUpdateWithoutExpensesPaidInput>
+    create: XOR<UserCreateWithoutExpensesPaidInput, UserUncheckedCreateWithoutExpensesPaidInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutExpensesPaidInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutExpensesPaidInput, UserUncheckedUpdateWithoutExpensesPaidInput>
+  }
+
+  export type UserUpdateWithoutExpensesPaidInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    budgets?: BudgetUpdateManyWithoutUserNestedInput
+    goals?: GoalUpdateManyWithoutUserNestedInput
+    bills?: BillUpdateManyWithoutUserNestedInput
+    loans?: LoanUpdateManyWithoutUserNestedInput
+    investments?: InvestmentUpdateManyWithoutUserNestedInput
+    quests?: JuniorQuestUpdateManyWithoutUserNestedInput
+    chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expenseSplits?: SharedExpenseSplitUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutExpensesPaidInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutUserNestedInput
+    goals?: GoalUncheckedUpdateManyWithoutUserNestedInput
+    bills?: BillUncheckedUpdateManyWithoutUserNestedInput
+    loans?: LoanUncheckedUpdateManyWithoutUserNestedInput
+    investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
+    quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
+    chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expenseSplits?: SharedExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type SharedExpenseSplitUpsertWithWhereUniqueWithoutSharedExpenseInput = {
+    where: SharedExpenseSplitWhereUniqueInput
+    update: XOR<SharedExpenseSplitUpdateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedUpdateWithoutSharedExpenseInput>
+    create: XOR<SharedExpenseSplitCreateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedCreateWithoutSharedExpenseInput>
+  }
+
+  export type SharedExpenseSplitUpdateWithWhereUniqueWithoutSharedExpenseInput = {
+    where: SharedExpenseSplitWhereUniqueInput
+    data: XOR<SharedExpenseSplitUpdateWithoutSharedExpenseInput, SharedExpenseSplitUncheckedUpdateWithoutSharedExpenseInput>
+  }
+
+  export type SharedExpenseSplitUpdateManyWithWhereWithoutSharedExpenseInput = {
+    where: SharedExpenseSplitScalarWhereInput
+    data: XOR<SharedExpenseSplitUpdateManyMutationInput, SharedExpenseSplitUncheckedUpdateManyWithoutSharedExpenseInput>
+  }
+
+  export type SharedExpenseCreateWithoutSplitsInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    paidBy: UserCreateNestedOneWithoutExpensesPaidInput
+  }
+
+  export type SharedExpenseUncheckedCreateWithoutSplitsInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    paidById: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseCreateOrConnectWithoutSplitsInput = {
+    where: SharedExpenseWhereUniqueInput
+    create: XOR<SharedExpenseCreateWithoutSplitsInput, SharedExpenseUncheckedCreateWithoutSplitsInput>
+  }
+
+  export type UserCreateWithoutExpenseSplitsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: string
+    profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    budgets?: BudgetCreateNestedManyWithoutUserInput
+    goals?: GoalCreateNestedManyWithoutUserInput
+    bills?: BillCreateNestedManyWithoutUserInput
+    loans?: LoanCreateNestedManyWithoutUserInput
+    investments?: InvestmentCreateNestedManyWithoutUserInput
+    quests?: JuniorQuestCreateNestedManyWithoutUserInput
+    chatHistories?: AIChatHistoryCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseCreateNestedManyWithoutPaidByInput
+  }
+
+  export type UserUncheckedCreateWithoutExpenseSplitsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: string
+    profileMode?: string
+    monthlyIncome?: number | null
+    monthlyBudget?: number | null
+    savingsTarget?: number | null
+    hasCompletedSetup?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutUserInput
+    goals?: GoalUncheckedCreateNestedManyWithoutUserInput
+    bills?: BillUncheckedCreateNestedManyWithoutUserInput
+    loans?: LoanUncheckedCreateNestedManyWithoutUserInput
+    investments?: InvestmentUncheckedCreateNestedManyWithoutUserInput
+    quests?: JuniorQuestUncheckedCreateNestedManyWithoutUserInput
+    chatHistories?: AIChatHistoryUncheckedCreateNestedManyWithoutUserInput
+    expensesPaid?: SharedExpenseUncheckedCreateNestedManyWithoutPaidByInput
+  }
+
+  export type UserCreateOrConnectWithoutExpenseSplitsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutExpenseSplitsInput, UserUncheckedCreateWithoutExpenseSplitsInput>
+  }
+
+  export type SharedExpenseUpsertWithoutSplitsInput = {
+    update: XOR<SharedExpenseUpdateWithoutSplitsInput, SharedExpenseUncheckedUpdateWithoutSplitsInput>
+    create: XOR<SharedExpenseCreateWithoutSplitsInput, SharedExpenseUncheckedCreateWithoutSplitsInput>
+    where?: SharedExpenseWhereInput
+  }
+
+  export type SharedExpenseUpdateToOneWithWhereWithoutSplitsInput = {
+    where?: SharedExpenseWhereInput
+    data: XOR<SharedExpenseUpdateWithoutSplitsInput, SharedExpenseUncheckedUpdateWithoutSplitsInput>
+  }
+
+  export type SharedExpenseUpdateWithoutSplitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    paidBy?: UserUpdateOneRequiredWithoutExpensesPaidNestedInput
+  }
+
+  export type SharedExpenseUncheckedUpdateWithoutSplitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    paidById?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutExpenseSplitsInput = {
+    update: XOR<UserUpdateWithoutExpenseSplitsInput, UserUncheckedUpdateWithoutExpenseSplitsInput>
+    create: XOR<UserCreateWithoutExpenseSplitsInput, UserUncheckedCreateWithoutExpenseSplitsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutExpenseSplitsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutExpenseSplitsInput, UserUncheckedUpdateWithoutExpenseSplitsInput>
+  }
+
+  export type UserUpdateWithoutExpenseSplitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    budgets?: BudgetUpdateManyWithoutUserNestedInput
+    goals?: GoalUpdateManyWithoutUserNestedInput
+    bills?: BillUpdateManyWithoutUserNestedInput
+    loans?: LoanUpdateManyWithoutUserNestedInput
+    investments?: InvestmentUpdateManyWithoutUserNestedInput
+    quests?: JuniorQuestUpdateManyWithoutUserNestedInput
+    chatHistories?: AIChatHistoryUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUpdateManyWithoutPaidByNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutExpenseSplitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    profileMode?: StringFieldUpdateOperationsInput | string
+    monthlyIncome?: NullableFloatFieldUpdateOperationsInput | number | null
+    monthlyBudget?: NullableFloatFieldUpdateOperationsInput | number | null
+    savingsTarget?: NullableFloatFieldUpdateOperationsInput | number | null
+    hasCompletedSetup?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutUserNestedInput
+    goals?: GoalUncheckedUpdateManyWithoutUserNestedInput
+    bills?: BillUncheckedUpdateManyWithoutUserNestedInput
+    loans?: LoanUncheckedUpdateManyWithoutUserNestedInput
+    investments?: InvestmentUncheckedUpdateManyWithoutUserNestedInput
+    quests?: JuniorQuestUncheckedUpdateManyWithoutUserNestedInput
+    chatHistories?: AIChatHistoryUncheckedUpdateManyWithoutUserNestedInput
+    expensesPaid?: SharedExpenseUncheckedUpdateManyWithoutPaidByNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -19699,6 +23277,28 @@ export namespace Prisma {
     role: string
     content: string
     createdAt?: Date | string
+  }
+
+  export type SharedExpenseCreateManyPaidByInput = {
+    id?: string
+    description: string
+    amount: number
+    category?: string
+    groupName?: string
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseSplitCreateManyUserInput = {
+    id?: string
+    sharedExpenseId: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -20022,6 +23622,114 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SharedExpenseUpdateWithoutPaidByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    splits?: SharedExpenseSplitUpdateManyWithoutSharedExpenseNestedInput
+  }
+
+  export type SharedExpenseUncheckedUpdateWithoutPaidByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    splits?: SharedExpenseSplitUncheckedUpdateManyWithoutSharedExpenseNestedInput
+  }
+
+  export type SharedExpenseUncheckedUpdateManyWithoutPaidByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    groupName?: StringFieldUpdateOperationsInput | string
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseSplitUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sharedExpense?: SharedExpenseUpdateOneRequiredWithoutSplitsNestedInput
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedExpenseId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sharedExpenseId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseSplitCreateManySharedExpenseInput = {
+    id?: string
+    userId: string
+    amount: number
+    settled?: boolean
+    settledAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SharedExpenseSplitUpdateWithoutSharedExpenseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutExpenseSplitsNestedInput
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateWithoutSharedExpenseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SharedExpenseSplitUncheckedUpdateManyWithoutSharedExpenseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    settled?: BoolFieldUpdateOperationsInput | boolean
+    settledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -20031,6 +23739,10 @@ export namespace Prisma {
      * @deprecated Use UserCountOutputTypeDefaultArgs instead
      */
     export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SharedExpenseCountOutputTypeDefaultArgs instead
+     */
+    export type SharedExpenseCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SharedExpenseCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -20079,6 +23791,14 @@ export namespace Prisma {
      * @deprecated Use AIChatHistoryDefaultArgs instead
      */
     export type AIChatHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AIChatHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SharedExpenseDefaultArgs instead
+     */
+    export type SharedExpenseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SharedExpenseDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SharedExpenseSplitDefaultArgs instead
+     */
+    export type SharedExpenseSplitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SharedExpenseSplitDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
