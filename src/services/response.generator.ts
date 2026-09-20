@@ -260,40 +260,59 @@ export async function generateChatReply(intent: Intent, snapshot: any, entities:
       };
     }
     case 'EDUCATION_QUERY': {
+      // 1. Fallback Hardcoded Dictionary
       const KNOWLEDGE_BASE: Record<string, string> = {
-        'mutual fund': 'A Mutual Fund is a pool of money collected from many investors to invest in stocks, bonds, or other securities. It is managed by professional fund managers.',
         'sip': 'SIP (Systematic Investment Plan) allows you to invest a fixed amount regularly (e.g., monthly) in a mutual fund, helping you build wealth through the power of compounding.',
-        'tax': 'Income tax is a percentage of your income paid to the government. The New Tax Regime offers lower rates but removes most exemptions, while the Old Regime has higher rates but allows deductions like 80C (PPF, ELSS).',
-        'emergency fund': 'An emergency fund is a stash of cash set aside specifically to cover unexpected financial surprises (like medical emergencies or job loss). A good rule of thumb is saving 3-6 months of expenses.',
-        'budget': 'A budget is a plan for your money. A popular rule is the 50/30/20 rule: 50% for Needs (rent, groceries), 30% for Wants (entertainment, dining), and 20% for Savings and Investing.',
-        'stock': 'A stock represents a share in the ownership of a company. When you buy a stock, you become a partial owner of that company.',
-        'fd': 'An FD (Fixed Deposit) is a safe investment where you deposit a lump sum with a bank for a fixed period at a guaranteed interest rate.',
-        'credit score': 'Your credit score (or CIBIL score) is a 3-digit number representing your creditworthiness. A score above 750 is generally considered excellent for getting loans.',
-        'loan': 'A loan is money borrowed that must be repaid with interest. Prepaping loans with high interest (like personal loans or credit cards) should be your first priority.',
+        'tax': 'Income tax is a percentage of your income paid to the government. The New Tax Regime offers lower rates but removes most exemptions.',
+        'emergency fund': 'An emergency fund is a stash of cash set aside specifically to cover unexpected financial surprises. A good rule of thumb is saving 3-6 months of expenses.',
+        'budget': 'A budget is a plan for your money. A popular rule is the 50/30/20 rule: 50% for Needs, 30% for Wants, and 20% for Savings.',
         'best sip': 'The "best" SIP depends on your goals and risk tolerance. For beginners, Broad Market Index Funds (like a Nifty 50 Index Fund) are highly recommended because they are low cost and historically provide steady, diversified growth over the long term.',
         'best mutual fund': 'There is no single "best" mutual fund, but for beginners, Index Funds or ELSS (Equity Linked Savings Scheme for tax benefits) are great starting points.'
       };
 
-      const topic = entities?.topic || '';
-      let bestMatch = '';
-      let reply = '';
+      // 2. Clean the user's input to extract just the search topic
+      const rawTopic = (entities?.topic || intentResult.originalMessage || '').toLowerCase();
+      const cleanTopic = rawTopic.replace(/what (is|are)|what's|whats|how (do|to)|explain|meaning of|guide on|learn about|the|a|an|tell me about|best/gi, '').trim();
 
-      for (const [key, definition] of Object.entries(KNOWLEDGE_BASE)) {
-        if (topic.includes(key)) {
-          bestMatch = key;
-          reply = definition;
-          break;
+      let reply = '';
+      let source = '';
+
+      // 3. Try Live Web Search via Wikipedia API first
+      if (cleanTopic.length > 2) {
+        try {
+          const wikiResponse = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanTopic)}`);
+          if (wikiResponse.ok) {
+            const wikiData = await wikiResponse.json();
+            if (wikiData && wikiData.extract) {
+              reply = wikiData.extract;
+              source = ' *(Source: Live Web Search)*';
+            }
+          }
+        } catch (error) {
+          console.error("Wikipedia Web Search Failed:", error);
         }
       }
 
+      // 4. If web search fails or finds nothing, use the fallback dictionary
       if (!reply) {
-        reply = "That's a great question! While I focus mostly on analyzing your personal transaction data, understanding these financial concepts is key to growing your wealth.";
+        for (const [key, definition] of Object.entries(KNOWLEDGE_BASE)) {
+          if (rawTopic.includes(key) || cleanTopic.includes(key)) {
+            reply = definition;
+            source = ' *(Source: Internal Knowledge Base)*';
+            break;
+          }
+        }
+      }
+
+      // 5. Ultimate fallback if neither works
+      if (!reply) {
+        reply = `I couldn't find a live web definition for "${cleanTopic}". However, as your personal finance copilot, I am always ready to analyze your budgets and spending!`;
       }
 
       return {
-        reply,
+        reply: reply + source,
         tone: 'info',
-        followUp: "Is there another financial term you'd like me to explain, or would you like to check your own budget?"
+        followUp: "Is there another financial term you'd like me to look up, or would you like to check your own budget?"
       };
     }
 
