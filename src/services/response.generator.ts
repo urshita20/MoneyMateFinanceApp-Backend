@@ -269,7 +269,9 @@ export async function generateChatReply(intent: Intent, snapshot: any, entities:
         'stock': 'A stock represents a share in the ownership of a company. When you buy a stock, you become a partial owner of that company.',
         'fd': 'An FD (Fixed Deposit) is a safe investment where you deposit a lump sum with a bank for a fixed period at a guaranteed interest rate.',
         'credit score': 'Your credit score (or CIBIL score) is a 3-digit number representing your creditworthiness. A score above 750 is generally considered excellent for getting loans.',
-        'loan': 'A loan is money borrowed that must be repaid with interest. Prepaping loans with high interest (like personal loans or credit cards) should be your first priority.'
+        'loan': 'A loan is money borrowed that must be repaid with interest. Prepaping loans with high interest (like personal loans or credit cards) should be your first priority.',
+        'best sip': 'The "best" SIP depends on your goals and risk tolerance. For beginners, Broad Market Index Funds (like a Nifty 50 Index Fund) are highly recommended because they are low cost and historically provide steady, diversified growth over the long term.',
+        'best mutual fund': 'There is no single "best" mutual fund, but for beginners, Index Funds or ELSS (Equity Linked Savings Scheme for tax benefits) are great starting points.'
       };
 
       const topic = entities?.topic || '';

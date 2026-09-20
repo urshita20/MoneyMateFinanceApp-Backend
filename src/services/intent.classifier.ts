@@ -81,7 +81,7 @@ export function classifyIntent(message: string): ClassifiedIntent {
   const lowerMsg = message.toLowerCase();
   
   // Strong override for educational questions
-  if (/what (is|are)|how (do|to)|explain|meaning of|guide on|learn about/.test(lowerMsg)) {
+  if (/what (is|are)|what's|whats|how (do|to)|explain|meaning of|guide on|learn about|best (sip|mutual fund|stock|investment)/.test(lowerMsg)) {
     return {
       intent: 'EDUCATION_QUERY',
       confidence: 0.9,
