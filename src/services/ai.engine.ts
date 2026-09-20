@@ -92,12 +92,13 @@ export async function processChat(userId: string, message: string): Promise<AIRe
 
     // 5. Generate response using intent and real data
     return await generateChatReply(intentResult.intent, enrichedSnapshot, intentResult.entities);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error in processChat:', error);
     return {
-      reply: "I'm sorry, I'm having trouble analyzing your finances right now. Please try again later. 🔄",
+      reply: `MATH CRASH DEBUG:\n\n${error.message}\n\n${error.stack}`,
       tone: 'info' as const,
-      followUp: 'You can ask me about your budget, spending, savings, or goals.',
+      followUp: 'Please show this screenshot to the dev.',
+      actionLabel: null,
     };
   }
 }
