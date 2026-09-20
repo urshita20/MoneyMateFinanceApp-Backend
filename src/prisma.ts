@@ -11,6 +11,7 @@ if (process.env.VERCEL) {
     const candidates = [
       path.resolve(process.cwd(), 'dev.db'),
       path.resolve(process.cwd(), 'prisma/dev.db'),
+      path.resolve(process.cwd(), '../dev.db'),
     ];
     for (const candidate of candidates) {
       if (fs.existsSync(candidate)) {
@@ -25,10 +26,14 @@ if (process.env.VERCEL) {
     }
   }
   dbUrl = 'file:/tmp/dev.db';
-} else {
+} else if (!dbUrl.startsWith('file:')) {
+  // ensure valid SQLite path format
   const localDbPath = path.resolve(process.cwd(), 'dev.db');
   dbUrl = `file:${localDbPath}`;
 }
+
+// Ensure process.env.DATABASE_URL matches dbUrl for Prisma internal env validator
+process.env.DATABASE_URL = dbUrl;
 
 export const prisma = new PrismaClient({
   datasources: {
