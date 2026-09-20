@@ -24,18 +24,26 @@ export const chatWithAI = async (req: AuthRequest, res: Response) => {
       return res.status(401).json({ success: false, message: 'No user found' });
     }
 
-    // Save user message to chat history
-    await prisma.aIChatHistory.create({
-      data: { role: 'user', content: message, userId: targetUserId },
-    });
+    // Save user message to chat history (wrapped in try/catch for Vercel ephemeral DB)
+    try {
+      await prisma.aIChatHistory.create({
+        data: { role: 'user', content: message, userId: targetUserId },
+      });
+    } catch (dbErr) {
+      console.warn('Skipping history save due to ephemeral DB constraints');
+    }
 
     // Process through AI engine (intent classification → data analysis → response generation)
     const aiResponse = await processChat(targetUserId, message);
 
     // Save assistant response to chat history
-    await prisma.aIChatHistory.create({
-      data: { role: 'assistant', content: aiResponse.reply, userId: targetUserId },
-    });
+    try {
+      await prisma.aIChatHistory.create({
+        data: { role: 'assistant', content: aiResponse.reply, userId: targetUserId },
+      });
+    } catch (dbErr) {
+      console.warn('Skipping history save due to ephemeral DB constraints');
+    }
 
     return res.json({
       success: true,
