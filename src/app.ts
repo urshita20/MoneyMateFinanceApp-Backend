@@ -34,7 +34,7 @@ app.use(morgan('dev'));
 // Welcome & Root Directory Endpoint
 app.get('/', (req, res) => {
   res.json({
-    message: '🚀 MoneyMate Finance App Backend API is running successfully!',
+    message: '🚀 FinSphere Finance App Backend API is running successfully!',
     status: 'online',
     health: '/health',
     endpoints: {
@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
 
 // Health Check Endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', service: 'MoneyMate Backend API', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', service: 'FinSphere Backend API', timestamp: new Date().toISOString() });
 });
 
 // API Routes

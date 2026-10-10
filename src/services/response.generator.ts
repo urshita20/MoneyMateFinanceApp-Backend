@@ -250,7 +250,7 @@ export async function generateChatReply(intent: Intent, snapshot: any, entities:
     }
     case 'GENERAL_GREETING': {
       const templates = [
-        `Hi ${userName}! 👋 I'm your MoneyMate AI. You've spent ${formatCurrency(snapshot?.expensesTotal || 0)} this month. How can I help you today?`,
+        `Hi ${userName}! 👋 I'm your FinSphere AI. You've spent ${formatCurrency(snapshot?.expensesTotal || 0)} this month. How can I help you today?`,
         `Welcome back, ${userName}! Your finances are looking organized. What would you like to explore?`
       ];
       return {
