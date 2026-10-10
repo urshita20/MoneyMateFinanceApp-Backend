@@ -1,13 +1,13 @@
 services:
   - type: web
-    name: moneymatefinanceapp-backend
+    name: finsphere-backend
     env: node
     buildCommand: npm run build
-    startCommand: export DATABASE_URL="file:./dev.db" && node dist/start.js
+    startCommand: export DATABASE_URL="file:./dev.db" && node src/start.js
     envVars:
       - key: DATABASE_URL
         value: "file:./dev.db"
       - key: JWT_SECRET
-        value: "moneymate_super_secret_jwt_key_2026"
+        value: "finsphere_super_secret_jwt_key_2026"
       - key: NODE_ENV
         value: "production"

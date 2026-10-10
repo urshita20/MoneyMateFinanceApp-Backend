@@ -1,38 +1,33 @@
 {
-  "name": "moneymate-backend",
+  "name": "finsphere-backend",
   "version": "1.0.0",
-  "description": "Backend REST API service for MoneyMate Personal Finance Application",
-  "main": "dist/start.js",
+  "description": "Backend REST API service for FinSphere Personal Finance Application",
+  "main": "src/start.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/start.ts",
-    "build": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate && tsc && prisma db push --accept-data-loss && tsx prisma/seed.ts && cp -f prisma/dev.db ./dev.db 2>/dev/null || true",
+    "dev": "node src/start.js",
+    "build": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate && prisma db push --accept-data-loss && node prisma/seed.js && cp -f prisma/dev.db ./dev.db 2>/dev/null || true",
     "postinstall": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma generate",
-    "start": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma db push --accept-data-loss && node dist/start.js",
+    "start": "cp -f .env.default .env 2>/dev/null || echo 'DATABASE_URL=\"file:./dev.db\"' > .env; prisma db push --accept-data-loss && node src/start.js",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
-    "prisma:seed": "tsx prisma/seed.ts"
+    "prisma:seed": "node prisma/seed.js"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "node prisma/seed.js"
   },
   "keywords": [
     "finance",
-    "moneymate",
+    "finsphere",
     "express",
+    "nodejs",
     "prisma",
-    "typescript"
+    "javascript"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.22.0",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
-    "@types/jsonwebtoken": "^9.0.7",
-    "@types/morgan": "^1.9.9",
-    "@types/node": "^22.9.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -42,8 +37,6 @@
     "morgan": "^1.10.0",
     "prisma": "^5.22.0",
     "tesseract.js": "^7.0.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.6.3",
     "zod": "^3.23.8"
   }
 }
